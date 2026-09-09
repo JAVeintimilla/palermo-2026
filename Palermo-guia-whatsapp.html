@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#10243B">
+<meta name="description" content="Guía de Palermo del 10 al 12 de diciembre de 2026 para 11 personas: itinerario, restaurantes, mapas, presupuesto y consejos prácticos.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Palermo 2026 · 10–12 diciembre">
+<meta property="og:description" content="Guía del viaje de 11 personas: itinerario, restaurantes, mapas, presupuesto y consejos prácticos.">
+<meta property="og:site_name" content="Palermo 2026">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Palermo 2026 · 10–12 diciembre</title>
+<style>
+:root{
+  --ink:#10243B; --ink2:#2C4665; --green:#0F6B57; --gold:#C8891A; --red:#A93524;
+  --plaster:#F6F1E6; --plaster2:#EDE5D4; --line:#D8CEB8; --white:#fff;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--plaster);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:16px;line-height:1.5;-webkit-text-size-adjust:100%;
+}
+.wrap{max-width:640px;margin:0 auto;background:var(--plaster)}
+h1,h2,h3,h4{font-family:Georgia,"Times New Roman",serif;margin:0;line-height:1.15}
+
+/* HERO */
+.hero{background:var(--ink);color:var(--plaster);padding:38px 20px 26px}
+.hero h1{font-size:52px;letter-spacing:-1px;color:#fff}
+.hero h1 span{display:block;color:var(--gold)}
+.hero .dates{color:var(--gold);font-family:Georgia,serif;font-size:18px;margin-top:12px}
+.hero p{color:#CDDAE6;font-size:15px;margin:14px 0 0}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.fact{flex:1 1 150px;border:1px solid #375678;padding:10px 12px}
+.fact b{display:block;font-family:Georgia,serif;color:#fff;font-size:15px}
+.fact span{font-size:12.5px;color:#9FB4CA}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:50;background:var(--ink);border-top:1px solid #375678;
+    display:flex;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{flex:0 0 auto;padding:13px 16px;color:#CDDAE6;text-decoration:none;font-size:13.5px;font-weight:600;white-space:nowrap}
+nav a.g{color:var(--gold)}
+
+/* DAY */
+.day{padding:26px 18px 8px}
+.dayhead{display:flex;align-items:flex-end;gap:14px;border-bottom:3px solid;padding-bottom:10px;margin-bottom:20px}
+.dayhead .n{font-family:Georgia,serif;font-size:46px;line-height:.8;font-weight:700}
+.dayhead h2{font-size:24px}
+.dayhead p{margin:4px 0 0;font-size:13px;color:var(--ink2)}
+.thu{border-color:var(--gold)} .thu .n,.thu h2{color:var(--gold)}
+.fri{border-color:var(--red)} .fri .n,.fri h2{color:var(--red)}
+.sat{border-color:var(--green)} .sat .n,.sat h2{color:var(--green)}
+.prac{border-color:var(--ink)} .prac .n,.prac h2{color:var(--ink)}
+
+/* STOP */
+.stop{background:var(--white);border:1px solid var(--line);margin-bottom:16px;overflow:hidden}
+.stop img{width:100%;height:190px;object-fit:cover;display:block;background:var(--plaster2)}
+.stop .in{padding:14px 15px 15px}
+.time{display:inline-block;font-family:Georgia,serif;font-weight:700;font-size:15px;
+      color:#fff;padding:2px 9px;margin-bottom:8px}
+.t-thu{background:var(--gold)} .t-fri{background:var(--red)} .t-sat{background:var(--green)} .t-ink{background:var(--ink)}
+.stop h3{font-size:19px;margin-bottom:7px}
+.stop p{margin:0 0 9px;font-size:14.5px}
+.meta{font-size:12.5px;color:var(--ink2);line-height:1.6}
+.meta b{color:var(--ink)}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.acts a{flex:1 1 auto;text-align:center;text-decoration:none;font-size:13px;font-weight:600;
+        padding:9px 12px;border:1.5px solid var(--ink);color:var(--ink);background:var(--white)}
+.acts a.solid{background:var(--ink);color:#fff}
+.warn{border-left:4px solid var(--red);background:var(--plaster2);padding:10px 12px;margin:10px 0;font-size:13.5px}
+.note{border-left:4px solid var(--green);background:var(--plaster2);padding:10px 12px;margin:10px 0;font-size:13.5px}
+
+/* SUB */
+.sub{background:var(--plaster2);border:1px solid var(--line);padding:13px 15px;margin-bottom:16px}
+.sub h4{font-size:16px;margin-bottom:9px}
+.row{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.row:last-child{border-bottom:none}
+.row .r{text-align:right;white-space:nowrap;font-family:Georgia,serif}
+.opts{display:flex;flex-direction:column;gap:14px;margin-bottom:16px}
+.badge{display:inline-block;color:#fff;font-family:Georgia,serif;font-weight:700;font-size:12.5px;padding:3px 9px;margin-bottom:9px}
+.b-gold{background:var(--gold)} .b-ink{background:var(--ink)}
+
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;font-family:Georgia,serif;border-bottom:2px solid var(--ink);padding:7px 6px 7px 0}
+td{padding:7px 6px 7px 0;border-bottom:1px solid var(--line);vertical-align:top}
+td.r,th.r{text-align:right;padding-right:0;font-family:Georgia,serif;white-space:nowrap}
+tr.tot td{border-top:2px solid var(--ink);border-bottom:none;font-family:Georgia,serif;font-size:17px;font-weight:700;padding-top:10px}
+
+/* MAIL */
+.tabs{display:flex;gap:6px;margin-bottom:12px}
+.tabs button{flex:1;padding:10px 6px;font-size:13.5px;font-weight:700;border:1.5px solid var(--ink);
+             background:var(--white);color:var(--ink);cursor:pointer;font-family:inherit}
+.tabs button.on{background:var(--ink);color:#fff}
+.mail{background:var(--white);border:1px solid var(--line);border-left:4px solid var(--gold);padding:14px 15px;
+      font-size:13.5px;line-height:1.6;white-space:pre-wrap;word-wrap:break-word}
+.mail .subj{font-family:Georgia,serif;font-weight:700;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:10px;display:block}
+.copy{width:100%;margin-top:10px;padding:13px;background:var(--gold);color:#fff;border:none;
+      font-size:15px;font-weight:700;cursor:pointer;font-family:inherit}
+.copy.ok{background:var(--green)}
+
+footer{background:var(--ink);color:#9FB4CA;padding:24px 20px 34px;font-size:12px;line-height:1.7}
+footer b{color:var(--plaster)}
+footer a{color:var(--gold)}
+.chk{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.chk span:first-child{font-size:16px;line-height:1.2}
+@media(min-width:560px){ .opts{flex-direction:row} .opts>div{flex:1} .stop img{height:230px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <h1>PALERMO<span>2026</span></h1>
+    <div class="dates">Jueves 10 — Sábado 12 de diciembre</div>
+    <p>Tres días en Sicilia para once. Todo el plan se hace andando: el hotel está en pleno centro y el punto más lejano queda a veinte minutos a pie. Horarios, precios y teléfonos comprobados.</p>
+    <div class="facts">
+      <div class="fact"><b>Mercure Palermo Centro</b><span>Via Mariano Stabile, 112</span></div>
+      <div class="fact"><b>145 – 300 €</b><span>por persona, sin vuelos ni hotel</span></div>
+      <div class="fact"><b>40 – 50 €</b><span>en efectivo por cabeza</span></div>
+    </div>
+  </header>
+
+  <nav>
+    <a href="#jue" class="g">Jueves</a>
+    <a href="#vie">Viernes</a>
+    <a href="#sab">Sábado</a>
+    <a href="#practico">Práctico</a>
+    <a href="#presupuesto">Presupuesto</a>
+    <a href="#correo">Correo</a>
+  </nav>
+
+  <main id="app"></main>
+
+  <footer>
+    <p><b>Palermo · 10 al 12 de diciembre · 11 personas</b></p>
+    <p>Las fotos se cargan desde Google Maps, así que necesitas conexión para verlas. Los datos de horarios y precios están comprobados, pero conviene confirmarlos en las webs oficiales antes de ir.</p>
+    <p>Fotos: Google Maps y sus colaboradores.</p>
+  </footer>
+</div>
+
+<script>
+const P = "https://lh3.googleusercontent.com/place-photos/";
+const IMG = {
+  hotel:"AG9NLjDTj_2d8ol_yCg_LDQZ-UGN0N8RJ8KCjXOVm_vB9NpGZtNQrPd72GzCuB4Ik2C9lk1J3owzSIHydeH-Q5dlxvc4sH2kDCPKkyIdRjklS32l8koLl48e1BkgyBNogJ507QWKDZFeDkJopUl61WQ=s4800-w800-h600",
+  scjavuru:"AG9NLjAs2souho3yC47rX150itOKH1P7SUm-0vV250uVdIrViwtVdsI0S8gCSSoY9BsuZhtFVu7UVZATFf8_LA_0-yqYuCeX2qY04sx9Wk_BMgKuqcrngTCG4_362eIpaMMCA30Q661BNOybv8JIUtw=s4800-w800-h600",
+  spinnato:"AG9NLjA8NzjM5Wv9s_9_ZwG7n5gPSMSGsRsRz5wDf-iRn046zpkOPZnWYOhjK5yKvnBTvsEGNQ2geKiVdPMVyfmKdKHpc4WNv699IKj4-E9uGfaR2Id4oYiAS2YOvJLINTDYkHIYFhGKIbaN4W5q3w=s4800-w800-h600",
+  palco:"AG9NLjAUMQ8ntEAuV-6LjS9JuqJYIqn1pSymfGw9cGjuQT9Kz5qoXr-bfS_adC9Am5lG-n-j0MRY9qJAck_71Jp4dnO0wZ3QIYBMpNVklpQqcFQeR9VBPLlGA44EEQFJeqfUkNx8GmL7zDV8srgOmGV76Y41XQ=s4800-w800-h600",
+  duomo:"AG9NLjAGWpK4d0kkccutEc0sR3YO-zDi3KgKbeBXcn3HCi6L5XbZ2JF8I2z3AO4B6PDi1Zr5wntWxnn8klhufsPLJc5RuvIrJVNohgLkKWnUA2uraZeUbCgcW50L13vdvzdzFxHYYT2n66ggvzk6GQ=s4800-w800-h600",
+  normanni:"AG9NLjCaONTrJdr_qvyR2tFbxHd2Mp-fspfakiE7mLnqFiNjeIV9sdzO-BmNv4os5X5oG3c2QSKs0ZNexQASZd7G29ZaB-PpWjY7z-B30Y83DdkTdRARXeiGqNCN2vL_YnGHq5RycXoB4q7DLedMxA=s4800-w800-h600",
+  ballaro:"AG9NLjCCxdq-wYKxLXYljh3m1981DF6kC0uHO0QeBzjZ9lM107KTmo3MZ0du2eAs8HmUNsaKfNhxKOeoaXvNMdJZ1uecI28SlGlJB_ixeWz5xrG_TK974atZ4ZzYpFb8x_KsDe_MMvPOj8V7CEk4AQ=s4800-w800-h600",
+  canti:"AG9NLjChU6RCY3BpEtOS2HKKJXOrp7FMKhbmsNejYPuU_GD6F6jLt4ySpul6PXSQOBrZ3-vk6e4qbUr2iQdb237_JwT9DTTgDwSf8J56BgOFExp0djxcQDK5CgiHyanra0px5rudQJmF3EhH_rISlLk=s4800-w800-h600",
+  pretoria:"AG9NLjA5tii5Wzk73PpMV3Qh4Ol5IbF5E4wcB2VBceXErOfvCUdZ4UwAac-u0WU3s38PIV1REQ9MESBzsLPQTw5aP0dKx4IIQSsixSu6YhGS0MezRsdy_8Zgx0aqeJosJCsn5wiFJ86wTK5Ry_JNPZ4=s4800-w800-h600",
+  martorana:"AG9NLjC7P-QnLBSe1A9LkvHtPo28il7B85hOb0-Zxz54U4SQUhZoI7_9-BPVxkl-JsFoWsb_-ztc44PXtOQrQqs6XMf4ZIk9vjiIL3MY61KJ1zCK37iZojQieH_LUllBfj_uoDvSOSdeIsGv0bQB-sA=s4800-w800-h600",
+  cataldo:"AG9NLjCP70r71NaEK1aImMqennAoWJ92YUvhth_7fC1OVg9lJdhdr2ivalXGwgvOun0IKOiNzdp9biTkHHq8acSc5IunMxYG60ltVE417PTRd8QrqbBUPzgcVKdOUXcLSoiJE8smEGGxDD1qzennFX_SR6SW0A=s4800-w800-h600",
+  vucciria:"AG9NLjD4cKLJGmbXhND_G2cMUo3Eh4eZjEevwgvQ7xVntmwKes1QuSR0E7AcSgc5c4XQTGcCxOgGAmeHB7E1a2C3sdFOvx5OD6Cfqzqo1VubxZ9w-iOpXN90pRHdYHe8xCa3yxuCYB2hS7BEMaDim3ttOabMLQ=s4800-w800-h600",
+  garibaldi:"AG9NLjAqnotqGuV_Fia32COr3DUdGv1EA4zadAxcASh2Wh_L8UBXjXOCKra7uCeFH_Y36LMjaAXiJSViUcpQtU8gzmbomN9thaElq-anl-rePPCVOiJEyNHZi_Oum4iHu8ivJIoaC1UfUmsT9RalJusRbkta2A=s4800-w800-h600",
+  bottiglieria:"AG9NLjBG5u5gMsn66_6_QTwwdXCiTFO4bzPlphE-NAymL2ibDTT52QS13DHdoXw_Q0CFIni6T_jvZ00ri6uI--wG3dJHSX5W7rsGhPbpks1ZSOY0kTYeb-ofzDTlQiX7aS9NQgVzwFY5hivDFBDr-YZvbjtl=s4800-w800-h600",
+  delmassimo:"AG9NLjDCjV_zHx2TLjsHxmJ4pdH1bbUQJZwTLWitl7zOYqCL-o-edLySYdd4ojGtjaIMOMd3wCiEISnRhMP9n6o_NYpmn_RJpAyRoniEn8pdEj0cT4EoEyEJvc1ohU_TBAzWunjkpD_CEpnQM_HEtg=s4800-w800-h600",
+  politeama:"AG9NLjBml18PqMHZOb7PGt4ZhgYUxoW2r4nkEk2PbdA-VPCseut7dTdH7EiQumCPE6j9JjyQpGVmhCIM512xXXAQdPquww1vcRXVCsGEfkXjl-7SC8U58zKfbU5mTDI1g71W4rbKVHIxmFHY_Rn7Hg=s4800-w800-h600",
+  massimo:"AG9NLjArPjrcPafQIiD821r4DK-RMsvGJwAkVjNbxvocJp2slYO6u2w-ynlTqefeNCl0e8jLkJjoZeFi0qmBFIHuCS8GlIHi-qknOoSw7b7C4TE4jPilXRVuJ85ZbV5bl5dNt6cAPzkAl7CteaJL=s4800-w800-h600",
+  capo:"AG9NLjDG-VWD5qsn8Q70rgKy9-Pd7h22J0-8naQPw22lc187rw5lDr9pSb1ROQTdN613p8xi4FdsK-lFmK3OrlFmtciUyBZTuoh3-iupl7CybJp9AkA9bh-A9XpIgSc9UlQMJXojehvnkVn5M8Dx4QLtpWWO=s4800-w800-h600",
+  immacolata:"AG9NLjCaopdVd7NqcCCOS_7_dv4-k0BviVAf9TFJ8NBB44mUycLKuEm_znopl2Vu5FbNFdZUUhzPEYMGAslxUb2WFnAAo7Lo9XidOVNgtc87IfQmGs7clldjDeldetUnMMLVBo8pzNW1RsM0oT2FrQ=s4800-w800-h600",
+  olivella:"AG9NLjC_CQ7DhxWIBwgWHeMcs9ZndPutHNgU99fDQy6NTZnnOF9YVuaHtt1JvYcT9dRtw15Z84_Dmkx30n5rKTHlr4J-5Iswi59yki-_Ly0yx35ZLxja1neAKY9T-_PquEuHx6e7GOfPTASMgGDaqQ=s4800-w800-h600",
+  salinas:"AG9NLjCQKqZMSM0rgeUwTlTO74Qoc1N5Jl8OZxK-BW6f1x73nR75u32PJQo0cdkQvVXTKXK4F0jw2wwHO2UUdzo8o0LPvbPE0coJRFMMc4lOecPz3nY_7pgQAYCrJMFYGCv8KHmkaS6zqJHZ5JIlIg=s4800-w800-h600",
+  branciforte:"AG9NLjCmfgFq0MlxHF-XWwS68-EAClyP8rf4FYp1nPk8KpnxYWQOPmI-OlGCT6ka34H5YIMLQKExESrGBl7HJTN6udcivxCP6WangGkXp-CtQoAvRtsqm7vn-Y-vJFGKd9MGFGoKSY7KIoHC6PhZ9g0=s4800-w800-h600",
+  catacombe:"AG9NLjDXRwE8lmW8Cp8iXeZE8i_NUV06HKvpjmPOQ_GL-g8LuaaUcyLJrVW8QUuLjiMn3aWB-cObOiWh0cK8Nv-Uy87P-Vt7ggpch1X16ckjuCP8S2X8FKUMRcG0hcxqXWk1Qb6rXgHGV2D0ADES6Q=s4800-w800-h600",
+  cascinari:"AG9NLjA2wT07ZceOuOXBggdzCXtwx2fj5B83-X2Hu48g-x5A1CzYIGewwhG2Ryq4kIMZZjAmAufOCvB3e0shvcIbldKpCcPZPvONHHzWzwexrDMiNMqU7LImmxFtZcQ3taMxWL5gvTmHXpuuktQ4u4ybJ2PZfQ=s4800-w800-h600"
+};
+const map = q => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q + ", Palermo");
+
+function stop(o){
+  const acts = (o.acts||[]).map(a =>
+    `<a href="${a.href}" ${a.href.startsWith('http')?'target="_blank" rel="noopener"':''} class="${a.solid?'solid':''}">${a.label}</a>`).join('');
+  return `<article class="stop">
+    ${o.img?`<img loading="lazy" src="${P+IMG[o.img]}" alt="${o.h}">`:''}
+    <div class="in">
+      ${o.time?`<div class="time t-${o.c}">${o.time}</div>`:''}
+      <h3>${o.h}</h3>
+      ${(o.p||[]).map(t=>`<p>${t}</p>`).join('')}
+      ${o.meta?`<div class="meta">${o.meta}</div>`:''}
+      ${o.warn?`<div class="warn">${o.warn}</div>`:''}
+      ${o.note?`<div class="note">${o.note}</div>`:''}
+      ${acts?`<div class="acts">${acts}</div>`:''}
+    </div></article>`;
+}
+
+let H = '';
+
+/* ================= JUEVES ================= */
+H += `<section class="day" id="jue">
+<div class="dayhead thu"><div class="n">10</div><div><h2>Jueves · Llegada</h2>
+<p>Aterrizamos a las 21:05 · en el hotel sobre las 22:30 · en la calle a las 22:45</p></div></div>`;
+
+H += stop({time:"21:05",c:"thu",img:"hotel",h:"Del aeropuerto al hotel",
+  p:["Punta Raisi está a 35 km. Contando desembarque y maletas, salimos sobre las 21:40 y llegamos hacia las 22:30."],
+  meta:`<b>Minibús privado</b> — recomendado con once. Tarifa fija cerrada, vehículos de 15-20 plazas, el conductor espera en llegadas con un cartel. <b>90-130 € el minibús</b><br>
+  <b>Taxi oficial</b> — harían falta 3 coches, parada oficial a la salida. <b>45-55 € cada uno</b><br>
+  <b>Bus Prestia e Comandè</b> — para en Politeama, a 3 min del hotel, cada 30 min. <b>6,90 € por persona</b>`,
+  acts:[{label:"booktaxisicily.com",href:"https://www.booktaxisicily.com/es/",solid:true},
+        {label:"Radiotaxi Trinacria",href:"tel:+39091225455"},
+        {label:"Bus Prestia",href:"https://www.prestiaecomande.it/"}]});
+
+H += `<h4 style="font-family:Georgia,serif;font-size:19px;margin:22px 0 14px">La primera noche, dos opciones. Lo decidimos en el avión.</h4>
+<div class="opts"><div>`;
+
+H += stop({c:"thu",img:"scjavuru",h:"Scjavúru",
+  p:[`<span class="badge b-gold">OPCIÓN A · PICADA Y LUEGO COPA</span><br>Si llegamos con hambre. Cenamos algo informal para compartir y la copa la tenemos a treinta metros.`,
+     "Es el único de la zona con la cocina abierta hasta medianoche; los demás cierran a las 23:00-23:30. Y la carta lleva foto de cada plato, que con once personas y cero italiano ahorra veinte minutos.",
+     "Para compartir: bruschette, tabla de embutidos, mejillones, almejas y pizzas."],
+  meta:"Via Principe di Belmonte, 83 · 4 min a pie · abierto <b>hasta las 00:00</b> · ★ 4,5 (2.562)<br><b>15-20 € por persona</b> · 165-220 € los once",
+  acts:[{label:"Ver en el mapa",href:map("Scjavuru Via Principe di Belmonte 83"),solid:true},
+        {label:"Llamar",href:"tel:+390916497877"}]});
+
+H += `</div><div>`;
+
+H += stop({c:"thu",img:"spinnato",h:"Antico Caffè Spinnato",
+  p:[`<span class="badge b-ink">OPCIÓN B · DIRECTAMENTE LA COPA</span><br>Si llegamos cenados o sin ganas de sentarnos. Es lo más probable si el vuelo se retrasa.`,
+     "Café histórico de 1860 en la calle peatonal de detrás del hotel, con las luces de Navidad puestas. Terraza grande y sin reserva, que es lo que necesitamos llegando once de improviso."],
+  meta:"Via Principe di Belmonte, 107 · 3 min del hotel · abierto <b>hasta la 1:00</b> · ★ 3,8 (4.766) · copa 8-12 €",
+  warn:"<b>Aviso:</b> ese 3,8 es real. Servicio a piñón fijo y cobran el servicio de mesa sin avisarlo claro. Para la primera copa del viaje da igual.",
+  acts:[{label:"Ver en el mapa",href:map("Antico Caffe Spinnato"),solid:true},
+        {label:"spinnato.it",href:"http://www.spinnato.it/"}]});
+
+H += `</div></div>`;
+
+H += `<div class="note" style="margin-bottom:16px"><b>Las dos opciones acaban en el mismo sitio.</b> Scjavúru y Spinnato están en la misma calle, a treinta metros. Vamos andando y probamos: si está lleno, nos movemos al de al lado. Nada de reservas.</div>`;
+
+H += `<div class="sub"><h4>Si Scjavúru está lleno, a cinco minutos</h4>
+<div class="row"><span><b>Osteria Pizzeria Re Borbone</b><br><span class="meta">P. Francesco Bagnasco, 8</span></span><span class="r">23:30<br><a href="tel:+39091541374">Llamar</a></span></div>
+<div class="row"><span><b>Iberico Politeama</b><br><span class="meta">P. Castelnuovo, 7</span></span><span class="r">23:30<br><a href="tel:+393332613270">Llamar</a></span></div>
+<div class="row"><span><b>Night and Day Ganci</b><br><span class="meta">Via Cala, 120 · 15 min · rosticceria 24 h, el comodín</span></span><span class="r">24 h<br><a href="tel:+390916119771">Llamar</a></span></div>
+</div>`;
+
+H += stop({c:"thu",img:"palco",h:"¿Coctelería de verdad?",
+  p:["Palco – Unexpected Cocktails es lo mejor de Palermo en su categoría, pero es local pequeño y con once puede ser justo."],
+  meta:"Piazzale Ungheria, 9 · 8 min andando · jueves hasta la 1:00 · ★ 4,9 (292) · cóctel 10-14 €",
+  acts:[{label:"Ver en el mapa",href:map("Palco Unexpected Cocktails"),solid:true},
+        {label:"palermococktail.it",href:"https://palermococktail.it/"}]});
+H += `</section>`;
+
+/* ================= VIERNES ================= */
+H += `<section class="day" id="vie">
+<div class="dayhead fri"><div class="n">11</div><div><h2>Viernes</h2>
+<p>Desayunamos en el hotel y salimos a las 09:45 · 6-7 km en total, sin cuestas</p></div></div>`;
+
+H += stop({time:"10:00",c:"fri",img:"duomo",h:"Catedral de Palermo",
+  p:["Bajamos por Via Maqueda y pasamos por delante del Teatro Massimo, que lo visitamos el sábado. La catedral por dentro es gratis, pero lo que merece pagar son <b>los tejados</b>: se sube por una escalera estrecha y se recorre la parte alta con toda la ciudad a los pies."],
+  meta:"Via Vittorio Emanuele, 490 · 7:00-19:00 · ★ 4,7 (51.577) · 45-60 min<br><b>Nave gratis</b> · Tejados <b>7 €</b> · Combinada con cripta, tesoro y tumbas reales <b>~15 €</b> · descuento desde 65 años",
+  acts:[{label:"Entradas y horarios",href:"https://www.cattedrale.palermo.it/",solid:true},
+        {label:"Mapa",href:map("Cattedrale di Palermo")},{label:"Llamar",href:"tel:+39091334373"}]});
+
+H += stop({time:"11:30",c:"fri",img:"normanni",h:"Palazzo dei Normanni y Cappella Palatina",
+  p:["Una capilla normanda con mosaicos bizantinos sobre fondo de oro y techo de mocárabes árabes. Tres culturas metidas en veinte metros cuadrados."],
+  meta:"Piazza del Parlamento, 1 · 8:30-16:30, último acceso 15:45 · ★ 4,7 (12.299) · 75-90 min · <b>~19-20 €</b> de viernes a lunes, con Apartamentos Reales",
+  warn:"<b>Dos cosas.</b> Compramos las entradas online con antelación: las colas son largas y siendo once la espera se multiplica. Y los Apartamentos Reales solo abren de viernes a lunes, así que caemos justo en el día bueno. Hay reseñas recientes que mencionan obras de restauración que tapan parte de los mosaicos y no lo avisan al comprar.",
+  acts:[{label:"Comprar entradas",href:"https://www.federicosecondo.org/",solid:true},
+        {label:"Mapa",href:map("Palazzo dei Normanni")}]});
+
+H += stop({time:"13:30",c:"fri",img:"ballaro",h:"Comida en el Mercato Ballarò",
+  p:["El mercado más grande y caótico de Palermo, en pleno barrio de Albergheria. Comemos barato y a nuestro aire: cada uno lo que quiera y donde quiera. <b>8-15 € por cabeza.</b>"],
+  warn:"<b>Dos reglas.</b> Preguntad el precio ANTES de pedir — hay reseñas de gente a la que le han cobrado 30-50 € por cuatro platitos, y siendo once esto se multiplica. Y llevad efectivo: casi ningún puesto acepta tarjeta.",
+  acts:[{label:"Ver en el mapa",href:map("Mercato Ballaro"),solid:true}]});
+
+H += `<div class="sub"><h4>Dónde comer en Ballarò</h4>
+<div class="row"><span><b>🧍 Los puestos del mercado</b><br><span class="meta">Panelle, crocchè, sfincione, pulpo a la brasa y, para valientes, el <i>pani ca' meusa</i>, el bocadillo de bazo.</span></span><span class="r">5-10 €</span></div>
+<div class="row"><span><b>🧍 Antonello Street Food</b> ★ 4,9<br><span class="meta">Via Porta di Castro, 62 · las mejores arancine de la zona, 2 € la unidad. Un carrito con cuatro sillas detrás. Solo efectivo, cierra a las 16:00.</span></span><span class="r">2 €/ud</span></div>
+<div class="row"><span><b>🪑 Sicily Street Food · Seafood Trattoria</b> ★ 4,8<br><span class="meta">Via Dalmazio Birago, 17 · dentro del mercado, pescado del día. Cierra 17:30. <a href="tel:+393273581227">+39 327 358 1227</a></span></span><span class="r">15-25 €</span></div>
+<div class="row"><span><b>🪑 Trattoria Al Sorriso</b> ★ 4,7<br><span class="meta">Via Rocco Pirri, 20 · a 12 min, cocina continua 12:00-16:00, lleno de locales. <a href="tel:+393519005584">+39 351 900 5584</a></span></span><span class="r">15-25 €</span></div>
+</div>`;
+
+H += stop({time:"15:15",c:"fri",img:"canti",h:"El corazón barroco",
+  p:["Después de comer subimos por Via Maqueda hasta el cruce que parte Palermo en cuatro. Las cuatro paradas están en <b>un radio de 150 metros</b>: es media hora larga en la que vemos el centro monumental casi sin andar, y no cuesta prácticamente nada."],
+  meta:`<b>Quattro Canti</b> — el cruce barroco de Via Maqueda con Via Vittorio Emanuele: cuatro fachadas curvas idénticas con fuentes, reyes y las patronas de la ciudad. Lo llaman "el teatro del sol" porque la luz va iluminando una esquina distinta a lo largo del día. <b>Gratis</b>`,
+  acts:[{label:"Ver en el mapa",href:map("Quattro Canti"),solid:true}]});
+
+H += stop({c:"fri",img:"pretoria",h:"Fontana Pretoria",
+  p:['A cincuenta metros de los Quattro Canti. La "fuente de la vergüenza", con dioses y ninfas desnudos que escandalizaron a las monjas del convento de enfrente.'],
+  meta:"Piazza Pretoria · abierta siempre · ★ 4,6 (8.012) · <b>gratis desde fuera</b>",
+  acts:[{label:"Ver en el mapa",href:map("Fontana Pretoria"),solid:true}]});
+
+H += stop({c:"fri",img:"martorana",h:"La Martorana",
+  p:["Piazza Bellini. Siglo XII, mosaicos bizantinos de oro. Pequeña pero impresionante."],
+  meta:"Piazza Bellini, 3 · 10:00-18:30 · ★ 4,7 (5.507) · <b>2,50 €</b>",
+  acts:[{label:"Ver en el mapa",href:map("La Martorana Piazza Bellini"),solid:true}]});
+
+H += stop({c:"fri",img:"cataldo",h:"San Cataldo",
+  p:["Justo al lado. Las tres cúpulas rojas árabo-normandas que salen en todas las fotos de Palermo. Por dentro es austera, sin decoración."],
+  meta:"Piazza Bellini, 1 · 10:00-18:00 · ★ 4,4 (1.901) · <b>2,50 €</b>",
+  acts:[{label:"Ver en el mapa",href:map("Chiesa di San Cataldo Palermo"),solid:true}]});
+
+H += stop({time:"16:30",c:"fri",img:"vucciria",h:"Vucciria y La Kalsa",
+  p:["Bajamos al mercado viejo de la <b>Vucciria</b> y, si queda luz, damos una vuelta por el barrio de <b>La Kalsa</b>: Piazza Marina con los ficus gigantes del Giardino Garibaldi y la iglesia sin techo de Santa Maria dello Spasimo."],
+  meta:"Piazza Caracciolo · ★ 4,2 (2.183) · gratis",
+  acts:[{label:"Vucciria",href:map("La Vucciria mercato"),solid:true},{label:"Giardino Garibaldi",href:map("Giardino Garibaldi Piazza Marina")}]});
+
+H += stop({time:"18:45",c:"fri",img:"bottiglieria",h:"Cervecita previa",
+  p:["<b>Bottiglieria del Massimo.</b> Local grande, que es lo que necesitamos siendo once de pie. Cerveza, vinos sicilianos y tablas de embutidos y quesos por si alguien va justo hasta la cena."],
+  meta:"Via Salvatore Spinuzza, 59 · martes a domingo 11:00-2:00 · ★ 4,3 (1.227) · copa 7-12 €, tabla 15-25 €<br><b>Cómo llegamos:</b> desde la Vucciria, 650 m y 9 min; desde Piazza Marina, 1,3 km y 17 min. Está a 5 min del restaurante.",
+  acts:[{label:"Ver en el mapa",href:map("Bottiglieria del Massimo"),solid:true},
+        {label:"Web",href:"https://www.bottiglieriadelmassimo.it/"},{label:"Llamar",href:"tel:+39091335730"}]});
+
+H += stop({time:"20:30",c:"fri",img:"delmassimo",h:"La cena de los once · Trattoria Del Massimo",
+  p:["Está justo detrás del Teatro Massimo, a 10 min del hotel. La he elegido porque <b>tiene sala de banquetes además del comedor</b>, así que once personas no son un problema — que es donde fallan casi todas las trattorias buenas de Palermo, que son minúsculas.",
+     "Gestión familiar desde 2015, cocina siciliana de verdad: sarde a beccafico, pasta con le sarde, anelletti al forno, busiate, frittura de calamares, caponata y cassata."],
+  meta:"Piazza Giuseppe Verdi, 25/26 · 12:00-15:30 y 18:30-23:00 · ★ 4,4 (2.122)<br><b>25-30 € por persona</b> · vino de la casa ~11 €/litro · 275-330 € los once<br>Web solo en italiano. Inglés casi seguro, español no lo doy por hecho.",
+  warn:"<b>Nos sentamos antes de las 21:00.</b> Varias reseñas avisan de que a partir de las 22:00 la cocina baja el nivel. La reserva la mando yo por correo — está más abajo, en tres idiomas.",
+  acts:[{label:"Escribir",href:"mailto:trattoriadelmassimo@gmail.com",solid:true},
+        {label:"Llamar",href:"tel:+39091326155"},{label:"Mapa",href:map("Trattoria Del Massimo Piazza Verdi")},
+        {label:"Web",href:"http://trattoriadelmassimo.com/"}]});
+
+H += `<div class="sub"><h4>Si no nos cogen</h4>
+<div class="row"><span><b>Taverna dei Canti</b> ★ 4,5 (14.836)<br><span class="meta">Via Maqueda, 229 · 11:00-00:30 · la de más capacidad, pero es una máquina turística · <a href="tel:+393515006009">+39 351 500 6009</a></span></span><span class="r">25-35 €</span></div>
+<div class="row"><span><b>Vucìa – Cucina Siciliana</b> ★ 4,5 (2.680)<br><span class="meta">Via Maqueda, 255 · 11:00-00:00 · <a href="tel:+393333930477">+39 333 393 0477</a></span></span><span class="r">20-30 €</span></div>
+<div class="row"><span><b>Trattoria alla Vucciria</b> ★ 4,6 (351)<br><span class="meta">Via Argenteria, 45 · 11:00-23:00 · <a href="tel:+393517107014">+39 351 710 7014</a></span></span><span class="r">20-30 €</span></div>
+</div></section>`;
+
+/* ================= SÁBADO ================= */
+H += `<section class="day" id="sab">
+<div class="dayhead sat"><div class="n">12</div><div><h2>Sábado · Zona norte</h2>
+<p>La mitad del centro que no pisamos el viernes · todo en un radio de un kilómetro del hotel</p></div></div>`;
+
+H += stop({time:"09:00",c:"sat",img:"politeama",h:"Teatro Politeama Garibaldi",
+  p:["Solo por fuera. La cuadriga de bronce del tejado y la fachada neoclásica con arco de triunfo. Diez minutos de fotos y seguimos."],
+  meta:"Piazza Ruggero Settimo · 4 min andando · <b>gratis</b> · ★ 4,6 (12.825)",
+  acts:[{label:"Ver en el mapa",href:map("Teatro Politeama Garibaldi"),solid:true}]});
+
+H += stop({time:"09:30",c:"sat",img:"massimo",h:"Teatro Massimo — visita guiada",
+  p:["El teatro de ópera más grande de Italia y el tercero de Europa. Se ve la sala, los palcos, el palco real y la sala del eco. Aquí se rodó la escena final de <i>El Padrino III</i>, así que las escaleras de la entrada son parada obligatoria."],
+  meta:"Piazza Verdi · visitas 9:30-15:30 todos los días · ★ 4,7 (56.778) · <b>~14 €</b> · 30-40 min",
+  warn:"<b>Reservo online.</b> Sin entrada podemos quedarnos fuera y no hay margen para esperar.",
+  acts:[{label:"Comprar entradas",href:"https://www.teatromassimo.it/",solid:true},
+        {label:"Mapa",href:map("Teatro Massimo")},{label:"Llamar",href:"tel:+390916053580"}]});
+
+H += stop({time:"10:30",c:"sat",img:"capo",h:"Mercato del Capo",
+  p:["El mercado hermano de Ballarò, pero <b>bastante menos caótico</b>: sigue siendo auténtico, con los vendedores cantando los precios, pero se pasea mucho mejor. El sábado por la mañana está en su mejor momento."],
+  meta:"V. Mura di Porta Carini · 7 min desde el teatro · <b>gratis</b> · ★ 4,4 (984)",
+  acts:[{label:"Ver en el mapa",href:map("Mercato del Capo"),solid:true}]});
+
+H += stop({time:"11:15",c:"sat",img:"immacolata",h:"Chiesa dell'Immacolata Concezione al Capo",
+  p:["Mi apuesta personal del viaje. Por fuera no es nada y se pasa de largo sin verla, escondida entre los puestos de verdura. Por dentro está <b>enteramente revestida de mármoles policromados</b>, tardaron 140 años en terminarla, y casi ningún turista entra."],
+  meta:"Via Porta Carini, 38, dentro del mercado · sábado <b>10:00-13:00</b> · <b>2,50 €</b> · ★ 4,7 (650)",
+  acts:[{label:"Ver en el mapa",href:map("Chiesa Immacolata Concezione al Capo"),solid:true}]});
+
+H += `<div class="sub"><h4>12:00 · Comida en el mercado</h4>
+<p style="margin:0 0 10px;font-size:14px"><b>Aquí el grupo se parte: Toni y Jaime comen de pie y el resto sigue.</b></p>
+<div class="row"><span><b>🧍 De pie, en el propio Capo</b><br><span class="meta">Arancine, panelle, crocchè, sfincione, focaccia. Solo efectivo y precio por delante.</span></span><span class="r">8-12 €</span></div>
+<div class="row"><span><b>🪑 Vucìa</b><br><span class="meta">Via Maqueda, 255 · 11:00-00:00 · <a href="tel:+393333930477">Llamar</a></span></span><span class="r">20-30 €</span></div>
+<div class="row"><span><b>🪑 Taverna dei Canti</b><br><span class="meta">Via Maqueda, 229 · 11:00-00:30 · <a href="tel:+393515006009">Llamar</a></span></span><span class="r">25-35 €</span></div>
+<div class="row"><span><b>🪑 Osteria Re Borbone</b><br><span class="meta">P. Bagnasco, 8 · 12:00-15:00 · <a href="tel:+39091541374">Llamar</a></span></span><span class="r">20-28 €</span></div>
+<p class="meta" style="margin-top:10px">Casi todas las trattorias de Palermo cierran cocina a las 15:00 clavadas. Las dos primeras no, por eso las pongo.</p>
+</div>`;
+
+H += stop({time:"12:45",c:"sat",img:"olivella",h:"Chiesa di Sant'Ignazio all'Olivella",
+  p:["A 12 minutos andando del Capo y a tres del Teatro Massimo. Por fuera es sobria y por dentro es una barbaridad de mármoles de colores."],
+  meta:"Piazza Olivella · ★ 4,6 (1.016) · <b>gratis</b>",
+  acts:[{label:"Ver en el mapa",href:map("Chiesa di Sant'Ignazio all'Olivella"),solid:true}]});
+
+H += stop({c:"sat",img:"salinas",h:"Museo Archeologico Salinas",
+  p:["En la misma plaza. Las metopas de los templos de Selinunte. Todo en una planta, se ve en 45 minutos sin agobio."],
+  meta:"Piazza Olivella, 1 · sábado 9:00-19:00 · ★ 4,5 (3.811) · <b>6-8 €</b>, menores de 25: 4 €",
+  acts:[{label:"Ver en el mapa",href:map("Museo Archeologico Salinas"),solid:true},{label:"Llamar",href:"tel:+390916116807"}]});
+
+H += stop({c:"sat",img:"catacombe",h:"Catacumbas de los Capuchinos",
+  p:["Plan de tarde para quien siga en Palermo. Ocho mil cuerpos momificados, vestidos y colgados de las paredes. Impresiona de verdad. Prohibido hacer fotos."],
+  meta:"Piazza Cappuccini, 1 · 9:00-17:10 · ★ 4,3 (16.239) · <b>5 €</b> · taxi de 10 min desde el centro",
+  acts:[{label:"Ver en el mapa",href:map("Catacombe dei Cappuccini"),solid:true},{label:"Llamar",href:"tel:+390916527389"}]});
+
+H += stop({c:"sat",img:"branciforte",h:"Palazzo Branciforte",
+  p:["El otro plan de tarde. Palacio restaurado por Gae Aulenti, con colección de <i>pupi</i> sicilianos, monedas y una biblioteca preciosa. A 5 min de Piazza Olivella."],
+  meta:"Largo Gae Aulenti, 2 · sábado 10:00-18:00 · ★ 4,5 (866)",
+  acts:[{label:"Ver en el mapa",href:map("Palazzo Branciforte"),solid:true},{label:"Web",href:"http://www.palazzobranciforte.it/"}]});
+
+H += stop({time:"19:30",c:"sat",img:"cascinari",h:"Cena del sábado · Trattoria Ai Cascinari",
+  p:["La mejor relación calidad-precio de Palermo, según casi todo el mundo. Trattoria familiar de barrio: calamar relleno, atún con menta y queso, pasta con sardinas, alcachofas, cassata al horno."],
+  meta:"Via d'Ossuna, 43/45 · sábado 12:30-14:30 y 19:30-22:00 · ★ 4,6 (2.573) · <b>25-30 € por persona</b> · 20 min andando del hotel o taxi de 8-10 €",
+  warn:"<b>Es pequeña y va llenísima: hay que reservar con varios días.</b>",
+  note:"<b>Alternativa:</b> Il Vizietto, Via Argenteria 30, ★ 4,6 (551), 20-28 €. Carta manuscrita, pescado del día y limoncello de la casa al final. <a href='tel:+393383645709'>+39 338 364 5709</a>",
+  acts:[{label:"Llamar y reservar",href:"tel:+390916519804",solid:true},
+        {label:"Mapa",href:map("Trattoria Ai Cascinari")},{label:"cascinari.com",href:"https://www.cascinari.com/"}]});
+
+H += `<div class="sub"><h4>Distancias a pie desde el hotel</h4>
+<div class="row"><span>Via Principe di Belmonte <span class="meta">(Scjavúru, Spinnato)</span></span><span class="r">3-4 min</span></div>
+<div class="row"><span>Teatro Politeama</span><span class="r">4 min</span></div>
+<div class="row"><span>Teatro Massimo</span><span class="r">8 min</span></div>
+<div class="row"><span>Piazza Olivella</span><span class="r">9 min</span></div>
+<div class="row"><span>Trattoria Del Massimo</span><span class="r">10 min</span></div>
+<div class="row"><span>Mercato del Capo</span><span class="r">15 min</span></div>
+<div class="row"><span>Quattro Canti</span><span class="r">16 min</span></div>
+<div class="row"><span>Catedral</span><span class="r">17 min</span></div>
+<div class="row"><span>Trattoria Ai Cascinari</span><span class="r">20 min</span></div>
+<div class="row"><span>Palazzo dei Normanni</span><span class="r">22 min</span></div>
+<p class="meta" style="margin-top:10px">Todo llano. El único trayecto que puede pedir taxi es el de la cena del sábado si llueve.</p>
+</div></section>`;
+
+/* ================= PRÁCTICO ================= */
+H += `<section class="day" id="practico">
+<div class="dayhead prac"><div class="n">€</div><div><h2>Práctico</h2><p>Transporte, consigna y lo que hay que reservar</p></div></div>
+
+<div class="warn" style="margin-bottom:16px"><b>Bolt no funciona en Italia.</b> No opera ride-hailing en el país, así que no contéis con la app.</div>
+
+<div class="sub"><h4>Moverse por Palermo</h4>
+<div class="row"><span><b>Uber</b><br><span class="meta">En Palermo funciona como Uber Taxi: la app asigna un taxi con licencia y tarifa de taxímetro. La opción más cómoda.</span></span></div>
+<div class="row"><span><b>FREE NOW</b><br><span class="meta">La app más usada en Italia para pedir taxi oficial.</span></span></div>
+<div class="row"><span><b>appTaxi / itTaxi</b><br><span class="meta">Apps de las cooperativas italianas.</span></span></div>
+<div class="row"><span><b>Radiotaxi Trinacria</b><br><span class="meta"><a href="tel:+39091225455">+39 091 225455</a> · <a href="tel:+390916878">+39 091 6878</a></span></span></div>
+<p class="meta" style="margin-top:10px"><b>Centro → aeropuerto: 45-65 €</b> según hora y tráfico. Pedidlo con 10-15 minutos de margen, que en Palermo las esperas de la app se estiran.</p>
+</div>
+
+<div class="sub"><h4>Consigna de equipaje</h4>
+<p style="margin:0;font-size:14px"><b>Stow Your Bags – Teatro Massimo</b></p>
+<p class="meta">Via dell'Orologio, 25 · 7:00-23:00 · ★ 4,8 (421) · <b>~5-7 € por bulto</b>. Se reserva online y se entra con un QR. <a href="tel:+390916198081">+39 091 619 8081</a></p>
+</div>
+
+<div class="sub"><h4>Lo que hay que reservar</h4>
+<div class="chk"><span>☐</span><span>Cena del viernes en <b>Trattoria Del Massimo</b> (por correo) — <i>Yo</i></span></div>
+<div class="chk"><span>☐</span><span>Entradas <b>Cappella Palatina</b> — <i>Yo</i></span></div>
+<div class="chk"><span>☐</span><span>Entradas <b>Teatro Massimo</b> — <i>Yo</i></span></div>
+<div class="chk"><span>☐</span><span><b>Minibús</b> aeropuerto-hotel del jueves — <i>Yo</i></span></div>
+<div class="chk"><span>☐</span><span>Cena del sábado en <b>Ai Cascinari</b> — <i>¿alguien se apunta?</i></span></div>
+<div class="chk"><span>☐</span><span>Descargaos <b>Uber</b> o <b>FREE NOW</b> antes de salir — <i>cada uno</i></span></div>
+</div>
+
+<div class="note"><b>Llevad efectivo:</b> 40-50 € por cabeza en billetes pequeños. Los mercados y el street food no aceptan tarjeta.<br><br>
+<b>Ropa:</b> en diciembre entre 12 y 17 °C con posibilidad de lluvia. Chubasquero o paraguas plegable y calzado cómodo de verdad — el empedrado de Palermo es duro y vamos a andar bastante.</div>
+</section>`;
+
+/* ================= PRESUPUESTO ================= */
+H += `<section class="day" id="presupuesto">
+<div class="dayhead prac"><div class="n">€</div><div><h2>Presupuesto</h2><p>Por persona · no incluye vuelos ni hotel</p></div></div>
+<p class="meta" style="margin-bottom:14px">La columna <b>ajustado</b> es comiendo de pie, entradas mínimas y bus al aeropuerto; <b>holgado</b> es todo sentado, todas las entradas y taxis.</p>
+
+<table>
+<tr><th>Traslados</th><th class="r">Ajust.</th><th class="r">Holg.</th></tr>
+<tr><td>Minibús aeropuerto → hotel</td><td class="r">8 €</td><td class="r">12 €</td></tr>
+<tr><td>Vuelta al aeropuerto</td><td class="r">7 €</td><td class="r">18 €</td></tr>
+<tr><td>Taxis internos</td><td class="r">0 €</td><td class="r">6 €</td></tr>
+<tr><td><b>Subtotal</b></td><td class="r"><b>15 €</b></td><td class="r"><b>36 €</b></td></tr>
+</table>
+
+<table style="margin-top:18px">
+<tr><th>Comidas y bebidas</th><th class="r">Ajust.</th><th class="r">Holg.</th></tr>
+<tr><td>Jueves · picada</td><td class="r">0 €</td><td class="r">20 €</td></tr>
+<tr><td>Jueves · copa</td><td class="r">8 €</td><td class="r">14 €</td></tr>
+<tr><td>Viernes · desayuno</td><td class="r" colspan="2">incluido</td></tr>
+<tr><td>Viernes · comida en Ballarò</td><td class="r">8 €</td><td class="r">15 €</td></tr>
+<tr><td>Viernes · cervecita</td><td class="r">8 €</td><td class="r">16 €</td></tr>
+<tr><td>Viernes · <b>cena</b></td><td class="r">25 €</td><td class="r">32 €</td></tr>
+<tr><td>Sábado · desayuno</td><td class="r" colspan="2">incluido</td></tr>
+<tr><td>Sábado · comida</td><td class="r">8 €</td><td class="r">28 €</td></tr>
+<tr><td>Sábado · <b>cena</b></td><td class="r">25 €</td><td class="r">32 €</td></tr>
+<tr><td><b>Subtotal</b></td><td class="r"><b>82 €</b></td><td class="r"><b>157 €</b></td></tr>
+</table>
+
+<table style="margin-top:18px">
+<tr><th>Entradas</th><th class="r">Ajust.</th><th class="r">Holg.</th></tr>
+<tr><td>Catedral (nave / combinada)</td><td class="r">0 €</td><td class="r">15 €</td></tr>
+<tr><td><b>Cappella Palatina</b></td><td class="r">20 €</td><td class="r">20 €</td></tr>
+<tr><td>Martorana + San Cataldo</td><td class="r">0 €</td><td class="r">5,50 €</td></tr>
+<tr><td><b>Teatro Massimo</b></td><td class="r">14 €</td><td class="r">14 €</td></tr>
+<tr><td>Immacolata Concezione</td><td class="r">2,50 €</td><td class="r">2,50 €</td></tr>
+<tr><td>Museo Salinas</td><td class="r">0 €</td><td class="r">8 €</td></tr>
+<tr><td>Catacumbas</td><td class="r">0 €</td><td class="r">5 €</td></tr>
+<tr><td><b>Subtotal</b></td><td class="r"><b>36,50 €</b></td><td class="r"><b>70 €</b></td></tr>
+</table>
+
+<table style="margin-top:18px">
+<tr><th>Otros</th><th class="r">Ajust.</th><th class="r">Holg.</th></tr>
+<tr><td>Consigna de equipaje</td><td class="r">0 €</td><td class="r">7 €</td></tr>
+<tr><td>Cafés, souvenirs, imprevistos</td><td class="r">10 €</td><td class="r">30 €</td></tr>
+<tr><td><b>Subtotal</b></td><td class="r"><b>10 €</b></td><td class="r"><b>37 €</b></td></tr>
+</table>
+
+<table style="margin-top:20px"><tr class="tot"><td>TOTAL</td><td class="r">≈145 €</td><td class="r">≈300 €</td></tr></table>
+
+<div class="sub" style="margin-top:16px"><h4>Para llevar encima: 200-220 €</h4>
+<p style="margin:0 0 8px;font-size:14px">Es el punto medio y da margen de sobra.</p>
+<p class="meta"><b>Ajustes:</b> quien no cene el sábado resta 25-32 € · quien se salte Salinas y las Catacumbas resta 13 € · las dos entradas grandes (Cappella Palatina y Teatro Massimo, 34 €) las pago yo por adelantado y las repartimos.</p>
+</div></section>`;
+
+/* ================= CORREO ================= */
+H += `<section class="day" id="correo">
+<div class="dayhead prac"><div class="n">@</div><div><h2>La reserva del viernes</h2><p>Trattoria Del Massimo · 11 personas · viernes 11 a las 20:30</p></div></div>
+
+<div class="sub"><h4>Datos del restaurante</h4>
+<div class="row"><span>Dirección</span><span class="r" style="white-space:normal">Piazza Giuseppe Verdi, 25/26</span></div>
+<div class="row"><span>Correo</span><span class="r" style="white-space:normal"><a href="mailto:trattoriadelmassimo@gmail.com">trattoriadelmassimo@gmail.com</a></span></div>
+<div class="row"><span>Teléfono</span><span class="r"><a href="tel:+39091326155">+39 091 326155</a></span></div>
+<div class="row"><span>Web</span><span class="r"><a href="http://trattoriadelmassimo.com/" target="_blank" rel="noopener">trattoriadelmassimo.com</a></span></div>
+<div class="row"><span>Precio</span><span class="r">25-30 €/persona</span></div>
+</div>
+
+<p style="font-size:14px;margin:0 0 12px">Mando el italiano en el cuerpo del mensaje. El inglés y el español están aquí por si quien lo envía prefiere otro idioma o acaba llamando.</p>
+
+<div class="tabs">
+  <button class="on" data-l="it">Italiano</button>
+  <button data-l="en">English</button>
+  <button data-l="es">Español</button>
+</div>
+<div class="mail" id="mailbox"></div>
+<button class="copy" id="copybtn">Copiar el correo</button>
+<p class="meta" style="margin-top:10px">Sustituid <b>[NOMBRE Y APELLIDO]</b> y <b>[TELÉFONO MÓVIL]</b> antes de enviarlo. Si en 48 horas no contestan, se remata por teléfono: para once personas un viernes de diciembre no me fío solo del correo.</p>
+</section>`;
+
+document.getElementById('app').innerHTML = H;
+
+/* correo */
+const MAILS = {
+it:{s:"Prenotazione tavolo 11 persone - venerdì 11 dicembre, ore 20:30",
+b:`Buonasera,
+
+vorrei prenotare un tavolo per 11 persone per venerdì 11 dicembre alle ore 20:30.
+
+Siamo un gruppo di amici spagnoli in visita a Palermo. Vi chiederei cortesemente di confermarmi:
+
+- la disponibilità del tavolo per 11 persone a quell'orario
+- se avete un menù di gruppo o un menù fisso da consigliarci, con il prezzo indicativo a persona
+- se è richiesta una caparra per confermare la prenotazione
+
+Per email potete rispondermi in italiano o in inglese, senza problemi.
+
+In attesa di un vostro riscontro, vi ringrazio.
+
+Cordiali saluti,
+[NOMBRE Y APELLIDO]
+Tel. +34 [TELÉFONO MÓVIL]
+Per telefono, per favore, solo in inglese o in spagnolo (non parliamo italiano).`},
+en:{s:"Table booking for 11 people - Friday 11 December, 8:30 pm",
+b:`Good evening,
+
+I would like to book a table for 11 people on Friday 11 December at 8:30 pm.
+
+We are a group of Spanish friends visiting Palermo. Could you please confirm:
+
+- availability for a table of 11 at that time
+- whether you offer a set or group menu you would recommend, with the approximate price per person
+- whether a deposit is required to confirm the booking
+
+You can reply by email in Italian or English, no problem.
+
+Thank you very much in advance.
+
+Kind regards,
+[NOMBRE Y APELLIDO]
+Phone: +34 [TELÉFONO MÓVIL]
+For phone calls, please, English or Spanish only (we do not speak Italian).`},
+es:{s:"Reserva de mesa para 11 personas - viernes 11 de diciembre, 20:30",
+b:`Buenas tardes,
+
+Me gustaría reservar una mesa para 11 personas el viernes 11 de diciembre a las 20:30.
+
+Somos un grupo de amigos españoles de visita en Palermo. Les agradecería que me confirmaran:
+
+- la disponibilidad de mesa para 11 personas a esa hora
+- si tienen menú de grupo o menú cerrado que nos recomienden, con el precio orientativo por persona
+- si hace falta señal o depósito para confirmar la reserva
+
+Pueden responderme por email en italiano o en inglés, sin problema.
+
+Muchas gracias de antemano.
+
+Un cordial saludo,
+[NOMBRE Y APELLIDO]
+Tel. +34 [TELÉFONO MÓVIL]
+Para llamadas, por favor, solo en inglés o español (no hablamos italiano).`}
+};
+let lang='it';
+const box=document.getElementById('mailbox'), btn=document.getElementById('copybtn');
+function render(){ box.innerHTML='<span class="subj">Asunto: '+MAILS[lang].s+'</span>'+MAILS[lang].b; }
+render();
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); lang=b.dataset.l; render();
+});
+btn.onclick=async()=>{
+  const txt='Asunto: '+MAILS[lang].s+'\n\n'+MAILS[lang].b;
+  try{ await navigator.clipboard.writeText(txt); }
+  catch(e){ const t=document.createElement('textarea'); t.value=txt; document.body.appendChild(t);
+    t.select(); document.execCommand('copy'); t.remove(); }
+  btn.textContent='Copiado ✓'; btn.classList.add('ok');
+  setTimeout(()=>{ btn.textContent='Copiar el correo'; btn.classList.remove('ok'); },2000);
+};
+</script>
+</body>
+</html>
