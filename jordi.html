@@ -41,6 +41,10 @@ section{padding:26px 18px 6px}
 .step .dot.r{background:var(--red)} .step .dot.g{background:var(--green)} .step .dot.o{background:var(--gold)}
 .step .body{flex:1;min-width:0}
 .step h3{font-size:17.5px;margin-bottom:6px}
+.chip{display:inline-block;vertical-align:middle;background:var(--green);color:#fff;
+      font-family:Georgia,serif;font-weight:700;font-size:11px;letter-spacing:1.4px;
+      text-transform:uppercase;padding:3px 11px;margin-left:9px;border-radius:999px}
+.chip::before{content:"✓";margin-right:5px}
 .step p{font-size:15px}
 
 .micro{background:var(--ink);color:#DCE6F0;padding:11px 13px;margin:10px 0;font-size:13.5px;line-height:1.65}
@@ -79,6 +83,7 @@ footer a{color:var(--gold)}
   <div class="kicker">Palermo · 10 al 12 de diciembre</div>
   <h1>Guía para Jordi</h1>
   <p>La misma guía que los demás, pero explicada despacio, sin adornos y contándotelo todo en metros, minutos y euros. Aquí no hay que pinchar en nada: te lo lees y ya está.</p>
+  <p style="color:#FBE7E2;font-size:13.5px;margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.3)"><b style="color:#fff">Esto se va actualizando.</b> Según vayamos reservando restaurantes y entradas, se cambia aquí. Ábrela otra vez de vez en cuando, no te quedes con la versión de hoy.</p>
   <a class="back" href="index.html">← Volver a la guía normal</a>
 </header>
 
@@ -108,10 +113,13 @@ footer a{color:var(--gold)}
   </div></div>
 
   <div class="step"><div class="dot">21:40</div><div class="body">
-    <h3>Salimos del aeropuerto</h3>
-    <p>Habrá un minibús esperándonos con un cartel. Nos montamos los once y ya está, no hay que hacer nada más.</p>
+    <h3>Salimos del aeropuerto <span class="chip">Reservado</span></h3>
+    <p>Habrá un minibús esperándonos con un cartel. Nos montamos los once y ya está, no hay que hacer nada más. <b>Ya está reservado</b>, lo ha cerrado Raúl por Booking aprovechando el descuento por tener el hotel con ellos.</p>
     <div class="micro"><span class="lbl">El microdato</span>
-      Del aeropuerto al hotel hay <b>35 km</b> y se tarda <b>45-50 minutos</b> porque hay autopista casi todo el rato. El minibús cuesta entre 90 y 130 € en total, o sea <b>entre 8 y 12 € por cabeza</b>. Sale igual que ir en taxi pero vamos todos juntos.</div>
+      Minibús de <b>16 plazas</b>, o sea que caben los once con todas las maletas y sobra sitio. Del aeropuerto al hotel hay <b>35 km</b> y se tarda <b>45-50 minutos</b>, casi todo autopista.<br><br>
+      <b>Ida:</b> 196 € entre 11 = <b>18 € por cabeza</b><br>
+      <b>Vuelta del domingo:</b> 151 € entre 9 = <b>17 € por cabeza</b> (a la vuelta somos nueve, dos se largan el sábado)<br><br>
+      <b>Total tuyo, que vuelves el domingo: 35 €.</b> Es el mismo vehículo las dos veces. Tú solo tienes que pagarlo cuando te lo pidan.</div>
   </div></div>
 
   <div class="step"><div class="dot">22:30</div><div class="body">
@@ -349,7 +357,7 @@ footer a{color:var(--gold)}
 
   <table>
     <tr><th>Concepto</th><th class="r">Tacaño</th><th class="r">Te vienes<br>arriba</th></tr>
-    <tr><td>Ir y volver del aeropuerto</td><td class="r">15 €</td><td class="r">30 €</td></tr>
+    <tr><td>Minibús, ida y vuelta <b>(ya cerrado)</b></td><td class="r">35 €</td><td class="r">35 €</td></tr>
     <tr><td>Taxis sueltos</td><td class="r">0 €</td><td class="r">6 €</td></tr>
     <tr><td>Jueves: cena</td><td class="r">0 €</td><td class="r">20 €</td></tr>
     <tr><td>Jueves: copa</td><td class="r">8 €</td><td class="r">14 €</td></tr>
@@ -360,15 +368,19 @@ footer a{color:var(--gold)}
     <tr><td>Sábado: <b>cena</b></td><td class="r">25 €</td><td class="r">32 €</td></tr>
     <tr><td>Entradas a todo</td><td class="r">36,50 €</td><td class="r">70 €</td></tr>
     <tr><td>Cafés, caprichos e imprevistos</td><td class="r">10 €</td><td class="r">37 €</td></tr>
-    <tr class="tot"><td>TOTAL</td><td class="r">≈145 €</td><td class="r">≈300 €</td></tr>
+    <tr class="tot"><td>TOTAL</td><td class="r">≈165 €</td><td class="r">≈305 €</td></tr>
   </table>
 
-  <div class="money"><b>La cifra realista es 200-220 €.</b> Ni te vas a privar de nada ni vas a tirar el dinero.</div>
+  <div class="money"><b>La cifra realista es 210-230 €.</b> Ni te vas a privar de nada ni vas a tirar el dinero.</div>
 
   <div class="grito">De esos 200 €, lleva <b>40-50 € en billetes pequeños</b>. Los mercados y los puestos de comida callejera no aceptan tarjeta y no la van a aceptar nunca. Lo demás lo pagas con tarjeta sin problema.</div>
 
-  <div class="micro"><span class="lbl">Cómo se paga lo que hay que reservar</span>
-    Las entradas del palacio y del teatro, y el minibús del aeropuerto, hay que sacarlos por internet antes de ir. Cada uno se encarga de una cosa, la paga con su tarjeta, y al final se cuadra todo por Bizum. No hay que adelantar nada gordo.</div>
+  <div class="grito">Lo de los bizums, que es importante.<br><br>
+  Casi todo se paga por adelantado y por internet: el minibús, las entradas, las señales de los restaurantes. Cada cosa la saca uno con su tarjeta y <b>te pedirá el bizum en ese momento</b>, no al final del viaje.<br><br>
+  <b>Págalo el mismo día que te lo pidan.</b> El que ha adelantado la pasta no tiene por qué ir financiando a diez tíos hasta diciembre. Y si se juntan cinco bizums de cinco personas distintas, aquello no lo cuadra ni Hacienda.</div>
+
+  <div class="micro"><span class="lbl">Lo que ya está pagado y pendiente de bizum</span>
+    Minibús: <b>35 €</b> en total si vuelves el domingo (18 de ida + 17 de vuelta). Lo demás irá cayendo conforme se reserven restaurantes y entradas.</div>
 </section>
 
 <!-- ============ FAQ ============ -->
@@ -408,7 +420,8 @@ footer a{color:var(--gold)}
   <div class="sechead"><div class="tag">Si solo lees una cosa</div><h2>La chuleta</h2></div>
   <table>
     <tr><td>Hotel</td><td class="r">Mercure, Via Mariano Stabile 112</td></tr>
-    <tr><td>Presupuesto realista</td><td class="r">200-220 €</td></tr>
+    <tr><td>Presupuesto realista</td><td class="r">210-230 €</td></tr>
+    <tr><td>Minibús (ya cerrado)</td><td class="r">35 € ida y vuelta</td></tr>
     <tr><td>Efectivo a llevar</td><td class="r">40-50 €</td></tr>
     <tr><td>Kilómetros a pie</td><td class="r">~10 km en 3 días</td></tr>
     <tr><td>Temperatura</td><td class="r">12-17 °C, puede llover</td></tr>
@@ -418,7 +431,7 @@ footer a{color:var(--gold)}
     <tr><td>Lo que no te puedes perder</td><td class="r">La Cappella Palatina</td></tr>
     <tr><td>Lo que hay que llevar sí o sí</td><td class="r">Zapatillas cómodas</td></tr>
   </table>
-  <p style="margin-top:18px"><a href="index.html" style="color:var(--red);font-weight:700">← Volver a la guía normal, la de los no porculeros</a></p>
+  <p style="margin-top:18px"><a href="index.html" style="color:var(--red);font-weight:700">← Volver a la guía normal, la de los adultos</a></p>
 </section>
 
 <footer>

@@ -76,6 +76,12 @@ nav a.jordi{color:#fff;background:var(--red)}
 .time{display:inline-block;font-family:Georgia,serif;font-weight:700;font-size:15px;
       color:#fff;padding:2px 9px;margin-bottom:8px}
 .t-thu{background:var(--gold)} .t-fri{background:var(--red)} .t-sat{background:var(--green)} .t-ink{background:var(--ink)}
+.chip{display:inline-block;vertical-align:top;background:var(--green);color:#fff;
+      font-family:Georgia,serif;font-weight:700;font-size:11.5px;letter-spacing:1.4px;
+      text-transform:uppercase;padding:4px 12px;margin:0 0 8px 8px;border-radius:999px}
+.chip::before{content:"✓";margin-right:5px;font-family:inherit}
+.chip.wait{background:var(--gold)}
+.chip.wait::before{content:"…"}
 .stop h3{font-size:19px;margin-bottom:7px}
 .stop p{margin:0 0 9px;font-size:14.5px}
 .meta{font-size:12.5px;color:var(--ink2);line-height:1.6}
@@ -135,6 +141,8 @@ footer a{color:var(--gold)}
       <div class="fact"><b>145 – 300 €</b><span>por persona, sin vuelos ni hotel</span></div>
       <div class="fact"><b>40 – 50 €</b><span>en efectivo por cabeza</span></div>
     </div>
+    <p style="margin-top:18px;padding-top:14px;border-top:1px solid #375678;font-size:13.5px;color:#9FB4CA">
+      <b style="color:#fff">Esta guía se va actualizando.</b> Conforme vayamos cerrando restaurantes, entradas y reservas, se cambia aquí mismo. Volved a abrirla de vez en cuando.</p>
   </header>
 
   <a href="jordi.html" class="jordibox">
@@ -199,7 +207,7 @@ function stop(o){
   return `<article class="stop">
     ${o.img?`<img loading="lazy" src="${IMG[o.img].startsWith('http')?IMG[o.img]:P+IMG[o.img]}" alt="${o.h}" onerror="this.style.display='none'">`:''}
     <div class="in">
-      ${o.time?`<div class="time t-${o.c}">${o.time}</div>`:''}
+      ${o.time?`<div class="time t-${o.c}">${o.time}</div>`:''}${o.chip?`<span class="chip ${o.chipClass||''}">${o.chip}</span>`:''}
       <h3>${o.h}</h3>
       ${(o.p||[]).map(t=>`<p>${t}</p>`).join('')}
       ${o.meta?`<div class="meta">${o.meta}</div>`:''}
@@ -216,14 +224,14 @@ H += `<section class="day" id="jue">
 <div class="dayhead thu"><div class="n">10</div><div><h2>Jueves · Llegada</h2>
 <p>Aterrizamos a las 21:05 · en el hotel sobre las 22:30 · en la calle a las 22:45</p></div></div>`;
 
-H += stop({time:"21:05",c:"thu",img:"hotel",h:"Del aeropuerto al hotel",
-  p:["Punta Raisi está a 35 km. Contando desembarque y maletas, salimos sobre las 21:40 y llegamos hacia las 22:30."],
-  meta:`<b>Minibús privado</b> — recomendado con once. Tarifa fija cerrada, vehículos de 15-20 plazas, el conductor espera en llegadas con un cartel. <b>90-130 € el minibús</b><br>
-  <b>Taxi oficial</b> — harían falta 3 coches, parada oficial a la salida. <b>45-55 € cada uno</b><br>
-  <b>Bus Prestia e Comandè</b> — para en Politeama, a 3 min del hotel, cada 30 min. <b>6,90 € por persona</b>`,
-  acts:[{label:"booktaxisicily.com",href:"https://www.booktaxisicily.com/es/",solid:true},
-        {label:"Radiotaxi Trinacria",href:"tel:+39091225455"},
-        {label:"Bus Prestia",href:"https://www.prestiaecomande.it/"}]});
+H += stop({time:"21:05",c:"thu",img:"hotel",chip:"Reservado",h:"Del aeropuerto al hotel",
+  p:["Punta Raisi está a 35 km. Contando desembarque y maletas, salimos sobre las 21:40 y llegamos hacia las 22:30.",
+     "<b>Ya está cerrado.</b> Raúl lo ha reservado a través de Booking, aprovechando el descuento por tener el hotel reservado con ellos. Es un <b>minibús de 16 plazas</b>, el mismo vehículo para la ida y para la vuelta."],
+  meta:`<b>Ida, aeropuerto → hotel:</b> 196 € entre 11 → <b>18 € por persona</b><br>
+  <b>Vuelta del domingo, hotel → aeropuerto:</b> 151 € entre 9 → <b>17 € por persona</b><br>
+  A la vuelta somos nueve porque dos se vuelven el sábado por su cuenta.<br><br>
+  <b>Lo que paga cada uno:</b> quien se vuelve el sábado, <b>18 €</b>. Quien se queda hasta el domingo, <b>35 €</b> (18 de ida + 17 de vuelta).`,
+  note:"<b>No hace falta que nadie busque nada.</b> El conductor espera en llegadas y cabemos todos con las maletas. Las alternativas (taxi oficial, bus Prestia e Comandè) quedan solo por si pasara algo de última hora."});
 
 H += `<h4 style="font-family:Georgia,serif;font-size:19px;margin:22px 0 14px">La primera noche, dos opciones. Lo decidimos en el avión.</h4>
 <div class="opts"><div>`;
@@ -469,10 +477,15 @@ H += `<section class="day" id="practico">
 <div class="chk"><span>☐</span><span>Cena del viernes: <b>Trattoria Del Massimo</b> o <b>I Pastari</b> — <i>por correo o llamando</i></span></div>
 <div class="chk"><span>☐</span><span>Entradas <b>Cappella Palatina</b> — <i>online, con antelación</i></span></div>
 <div class="chk"><span>☐</span><span>Entradas <b>Teatro Massimo</b> — <i>online, con antelación</i></span></div>
-<div class="chk"><span>☐</span><span><b>Minibús</b> aeropuerto-hotel del jueves — <i>online, con antelación</i></span></div>
+<div class="chk"><span>✅</span><span><b>Minibús</b> ida y vuelta — <i>reservado por Raúl vía Booking</i></span></div>
 <div class="chk"><span>☐</span><span>Cena del sábado en <b>Ai Cascinari</b> — <i>llamando, con varios días</i></span></div>
 <div class="chk"><span>☐</span><span>Descargaos <b>Uber</b> o <b>FREE NOW</b> antes de salir — <i>cada uno</i></span></div>
-<p class="meta" style="margin-top:12px"><b>Cómo lo pagamos:</b> las entradas y el minibús hay que sacarlos online por adelantado, así que se reparte: cada uno se encarga de una cosa, la paga con su tarjeta y al final cuadramos todo por Bizum. Repartíos en el grupo quién coge qué.</p>
+</div>
+
+<div class="sub" style="border:2px solid var(--red)"><h4 style="color:var(--red)">Los bizums</h4>
+<p style="font-size:14.5px;margin-bottom:8px">Casi todo hay que pagarlo por adelantado y online: el minibús, las entradas, las señales de los restaurantes. Se va reparando sobre la marcha: quien saque cada cosa la paga con su tarjeta y <b>pide el bizum al resto en ese momento</b>, no al final del viaje.</p>
+<p style="font-size:14.5px;margin-bottom:8px"><b>Por favor, no os demoréis en pagarlo.</b> El que adelanta el dinero no tiene por qué ir financiando a diez personas durante tres meses, y si se acumulan cinco bizums pendientes de cinco personas distintas aquello no hay quien lo cuadre.</p>
+<p class="meta"><b>Lo que ya está cerrado:</b> el minibús. <b>18 €</b> quien se vuelva el sábado · <b>35 €</b> quien se quede al domingo (18 de ida + 17 de vuelta).</p>
 </div>
 
 <div class="note"><b>Llevad efectivo:</b> 40-50 € por cabeza en billetes pequeños. Los mercados y el street food no aceptan tarjeta.<br><br>
@@ -486,10 +499,10 @@ H += `<section class="day" id="presupuesto">
 
 <table>
 <tr><th>Traslados</th><th class="r">Ajust.</th><th class="r">Holg.</th></tr>
-<tr><td>Minibús aeropuerto → hotel</td><td class="r">8 €</td><td class="r">12 €</td></tr>
-<tr><td>Vuelta al aeropuerto</td><td class="r">7 €</td><td class="r">18 €</td></tr>
+<tr><td>Minibús aeropuerto → hotel <span class="meta">(cerrado)</span></td><td class="r">18 €</td><td class="r">18 €</td></tr>
+<tr><td>Minibús de vuelta el domingo <span class="meta">(cerrado)</span></td><td class="r">17 €</td><td class="r">17 €</td></tr>
 <tr><td>Taxis internos</td><td class="r">0 €</td><td class="r">6 €</td></tr>
-<tr><td><b>Subtotal</b></td><td class="r"><b>15 €</b></td><td class="r"><b>36 €</b></td></tr>
+<tr><td><b>Subtotal</b></td><td class="r"><b>35 €</b></td><td class="r"><b>41 €</b></td></tr>
 </table>
 
 <table style="margin-top:18px">
@@ -525,11 +538,11 @@ H += `<section class="day" id="presupuesto">
 <tr><td><b>Subtotal</b></td><td class="r"><b>10 €</b></td><td class="r"><b>37 €</b></td></tr>
 </table>
 
-<table style="margin-top:20px"><tr class="tot"><td>TOTAL</td><td class="r">≈145 €</td><td class="r">≈300 €</td></tr></table>
+<table style="margin-top:20px"><tr class="tot"><td>TOTAL</td><td class="r">≈165 €</td><td class="r">≈305 €</td></tr></table>
 
-<div class="sub" style="margin-top:16px"><h4>Para llevar encima: 200-220 €</h4>
+<div class="sub" style="margin-top:16px"><h4>Para llevar encima: 210-230 €</h4>
 <p style="margin:0 0 8px;font-size:14px">Es el punto medio y da margen de sobra.</p>
-<p class="meta"><b>Ajustes:</b> quien no cene el sábado resta 25-32 € · quien se salte Salinas y las Catacumbas resta 13 € · las dos entradas grandes (Cappella Palatina y Teatro Massimo, 34 €) hay que sacarlas online por adelantado: se encarga uno de cada una y lo cuadramos por Bizum.</p>
+<p class="meta"><b>Ajustes:</b> quien no cene el sábado resta 25-32 € · quien se salte Salinas y las Catacumbas resta 13 € · quien no vuelva el domingo en el minibús resta los 17 € de la vuelta.</p>
 </div></section>`;
 
 /* ================= CORREO ================= */
