@@ -43,7 +43,15 @@ nav{position:sticky;top:0;z-index:50;background:var(--ink);border-top:1px solid 
     display:flex;overflow-x:auto;scrollbar-width:none}
 nav::-webkit-scrollbar{display:none}
 nav a{flex:0 0 auto;padding:13px 16px;color:#CDDAE6;text-decoration:none;font-size:13.5px;font-weight:600;white-space:nowrap}
-nav a.g{color:var(--gold)}
+nav a.on{color:var(--gold);box-shadow:inset 0 -3px 0 var(--gold)}
+.mini{display:flex;gap:6px;margin-top:9px}
+.mini a{flex:1;text-align:center;padding:7px 4px;font-size:12px;font-weight:600;
+        border:1.5px solid var(--ink);color:var(--ink);text-decoration:none;background:var(--white)}
+.mini a.solid{background:var(--ink);color:#fff}
+.altcard{background:var(--white);border:1px solid var(--line);padding:12px 13px;margin-bottom:10px}
+.altcard:last-child{margin-bottom:0}
+.altcard .top{display:flex;justify-content:space-between;gap:10px;font-size:14px}
+.altcard .top .r{text-align:right;white-space:nowrap;font-family:Georgia,serif}
 
 /* DAY */
 .day{padding:26px 18px 8px}
@@ -125,12 +133,12 @@ footer a{color:var(--gold)}
   </header>
 
   <nav>
-    <a href="#jue" class="g">Jueves</a>
+    <a href="#jue">Jueves</a>
     <a href="#vie">Viernes</a>
     <a href="#sab">Sábado</a>
     <a href="#practico">Práctico</a>
     <a href="#presupuesto">Presupuesto</a>
-    <a href="#correo">Correo</a>
+    <a href="#correo">Reservas</a>
   </nav>
 
   <main id="app"></main>
@@ -168,6 +176,7 @@ const IMG = {
   salinas:"AG9NLjCQKqZMSM0rgeUwTlTO74Qoc1N5Jl8OZxK-BW6f1x73nR75u32PJQo0cdkQvVXTKXK4F0jw2wwHO2UUdzo8o0LPvbPE0coJRFMMc4lOecPz3nY_7pgQAYCrJMFYGCv8KHmkaS6zqJHZ5JIlIg=s4800-w800-h600",
   branciforte:"AG9NLjCmfgFq0MlxHF-XWwS68-EAClyP8rf4FYp1nPk8KpnxYWQOPmI-OlGCT6ka34H5YIMLQKExESrGBl7HJTN6udcivxCP6WangGkXp-CtQoAvRtsqm7vn-Y-vJFGKd9MGFGoKSY7KIoHC6PhZ9g0=s4800-w800-h600",
   catacombe:"AG9NLjDXRwE8lmW8Cp8iXeZE8i_NUV06HKvpjmPOQ_GL-g8LuaaUcyLJrVW8QUuLjiMn3aWB-cObOiWh0cK8Nv-Uy87P-Vt7ggpch1X16ckjuCP8S2X8FKUMRcG0hcxqXWk1Qb6rXgHGV2D0ADES6Q=s4800-w800-h600",
+  ipastari:"https://www.leggimenu.it/menu/uploads/impostazioni/7hpkbeij85q2/1215138530686500ea4fea09.52680157.jpeg",
   cascinari:"AG9NLjA2wT07ZceOuOXBggdzCXtwx2fj5B83-X2Hu48g-x5A1CzYIGewwhG2Ryq4kIMZZjAmAufOCvB3e0shvcIbldKpCcPZPvONHHzWzwexrDMiNMqU7LImmxFtZcQ3taMxWL5gvTmHXpuuktQ4u4ybJ2PZfQ=s4800-w800-h600"
 };
 const map = q => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q + ", Palermo");
@@ -176,7 +185,7 @@ function stop(o){
   const acts = (o.acts||[]).map(a =>
     `<a href="${a.href}" ${a.href.startsWith('http')?'target="_blank" rel="noopener"':''} class="${a.solid?'solid':''}">${a.label}</a>`).join('');
   return `<article class="stop">
-    ${o.img?`<img loading="lazy" src="${P+IMG[o.img]}" alt="${o.h}">`:''}
+    ${o.img?`<img loading="lazy" src="${IMG[o.img].startsWith('http')?IMG[o.img]:P+IMG[o.img]}" alt="${o.h}" onerror="this.style.display='none'">`:''}
     <div class="in">
       ${o.time?`<div class="time t-${o.c}">${o.time}</div>`:''}
       <h3>${o.h}</h3>
@@ -230,9 +239,12 @@ H += `</div></div>`;
 H += `<div class="note" style="margin-bottom:16px"><b>Las dos opciones acaban en el mismo sitio.</b> Scjavúru y Spinnato están en la misma calle, a treinta metros. Vamos andando y probamos: si está lleno, nos movemos al de al lado. Nada de reservas.</div>`;
 
 H += `<div class="sub"><h4>Si Scjavúru está lleno, a cinco minutos</h4>
-<div class="row"><span><b>Osteria Pizzeria Re Borbone</b><br><span class="meta">P. Francesco Bagnasco, 8</span></span><span class="r">23:30<br><a href="tel:+39091541374">Llamar</a></span></div>
-<div class="row"><span><b>Iberico Politeama</b><br><span class="meta">P. Castelnuovo, 7</span></span><span class="r">23:30<br><a href="tel:+393332613270">Llamar</a></span></div>
-<div class="row"><span><b>Night and Day Ganci</b><br><span class="meta">Via Cala, 120 · 15 min · rosticceria 24 h, el comodín</span></span><span class="r">24 h<br><a href="tel:+390916119771">Llamar</a></span></div>
+<div class="altcard"><div class="top"><span><b>Osteria Pizzeria Re Borbone</b><br><span class="meta">P. Francesco Bagnasco, 8</span></span><span class="r">23:30</span></div>
+<div class="mini"><a href="tel:+39091541374">Llamar</a><a href="${map('Osteria Pizzeria Re Borbone')}" target="_blank" rel="noopener" class="solid">Enlace</a></div></div>
+<div class="altcard"><div class="top"><span><b>Iberico Politeama</b><br><span class="meta">P. Castelnuovo, 7</span></span><span class="r">23:30</span></div>
+<div class="mini"><a href="tel:+393332613270">Llamar</a><a href="${map('Iberico Politeama')}" target="_blank" rel="noopener" class="solid">Enlace</a></div></div>
+<div class="altcard"><div class="top"><span><b>Night and Day Ganci</b><br><span class="meta">Via Cala, 120 · 15 min · rosticceria 24 h, el comodín</span></span><span class="r">24 h</span></div>
+<div class="mini"><a href="tel:+390916119771">Llamar</a><a href="${map('Night and Day Ganci Via Cala')}" target="_blank" rel="noopener" class="solid">Enlace</a></div></div>
 </div>`;
 
 H += stop({c:"thu",img:"palco",h:"¿Coctelería de verdad?",
@@ -268,8 +280,10 @@ H += stop({time:"13:30",c:"fri",img:"ballaro",h:"Comida en el Mercato Ballarò",
 H += `<div class="sub"><h4>Dónde comer en Ballarò</h4>
 <div class="row"><span><b>🧍 Los puestos del mercado</b><br><span class="meta">Panelle, crocchè, sfincione, pulpo a la brasa y, para valientes, el <i>pani ca' meusa</i>, el bocadillo de bazo.</span></span><span class="r">5-10 €</span></div>
 <div class="row"><span><b>🧍 Antonello Street Food</b> ★ 4,9<br><span class="meta">Via Porta di Castro, 62 · las mejores arancine de la zona, 2 € la unidad. Un carrito con cuatro sillas detrás. Solo efectivo, cierra a las 16:00.</span></span><span class="r">2 €/ud</span></div>
-<div class="row"><span><b>🪑 Sicily Street Food · Seafood Trattoria</b> ★ 4,8<br><span class="meta">Via Dalmazio Birago, 17 · dentro del mercado, pescado del día. Cierra 17:30. <a href="tel:+393273581227">+39 327 358 1227</a></span></span><span class="r">15-25 €</span></div>
-<div class="row"><span><b>🪑 Trattoria Al Sorriso</b> ★ 4,7<br><span class="meta">Via Rocco Pirri, 20 · a 12 min, cocina continua 12:00-16:00, lleno de locales. <a href="tel:+393519005584">+39 351 900 5584</a></span></span><span class="r">15-25 €</span></div>
+<div class="altcard"><div class="top"><span><b>🪑 Sicily Street Food · Seafood Trattoria</b> ★ 4,8<br><span class="meta">Via Dalmazio Birago, 17 · dentro del mercado, pescado del día. Cierra 17:30.</span></span><span class="r">15-25 €</span></div>
+<div class="mini"><a href="tel:+393273581227">Llamar</a><a href="${map('Sicily Street Food Seafood Trattoria')}" target="_blank" rel="noopener" class="solid">Enlace</a></div></div>
+<div class="altcard"><div class="top"><span><b>🪑 Trattoria Al Sorriso</b> ★ 4,7<br><span class="meta">Via Rocco Pirri, 20 · a 12 min, cocina continua 12:00-16:00, lleno de locales.</span></span><span class="r">15-25 €</span></div>
+<div class="mini"><a href="tel:+393519005584">Llamar</a><a href="${map('Trattoria Al Sorriso Via Rocco Pirri')}" target="_blank" rel="noopener" class="solid">Enlace</a></div></div>
 </div>`;
 
 H += stop({time:"15:15",c:"fri",img:"canti",h:"El corazón barroco",
@@ -307,15 +321,31 @@ H += stop({time:"20:30",c:"fri",img:"delmassimo",h:"La cena de los once · Tratt
   p:["Está justo detrás del Teatro Massimo, a 10 min del hotel. La he elegido porque <b>tiene sala de banquetes además del comedor</b>, así que once personas no son un problema — que es donde fallan casi todas las trattorias buenas de Palermo, que son minúsculas.",
      "Gestión familiar desde 2015, cocina siciliana de verdad: sarde a beccafico, pasta con le sarde, anelletti al forno, busiate, frittura de calamares, caponata y cassata."],
   meta:"Piazza Giuseppe Verdi, 25/26 · 12:00-15:30 y 18:30-23:00 · ★ 4,4 (2.122)<br><b>25-30 € por persona</b> · vino de la casa ~11 €/litro · 275-330 € los once<br>Web solo en italiano. Inglés casi seguro, español no lo doy por hecho.",
-  warn:"<b>Nos sentamos antes de las 21:00.</b> Varias reseñas avisan de que a partir de las 22:00 la cocina baja el nivel. La reserva la mando yo por correo — está más abajo, en tres idiomas.",
+  warn:"<b>Nos sentamos antes de las 21:00.</b> Varias reseñas avisan de que a partir de las 22:00 la cocina baja el nivel. El correo de reserva está más abajo, en tres idiomas y listo para copiar.",
   acts:[{label:"Escribir",href:"mailto:trattoriadelmassimo@gmail.com",solid:true},
         {label:"Llamar",href:"tel:+39091326155"},{label:"Mapa",href:map("Trattoria Del Massimo Piazza Verdi")},
         {label:"Web",href:"http://trattoriadelmassimo.com/"}]});
 
-H += `<div class="sub"><h4>Si no nos cogen</h4>
-<div class="row"><span><b>Taverna dei Canti</b> ★ 4,5 (14.836)<br><span class="meta">Via Maqueda, 229 · 11:00-00:30 · la de más capacidad, pero es una máquina turística · <a href="tel:+393515006009">+39 351 500 6009</a></span></span><span class="r">25-35 €</span></div>
-<div class="row"><span><b>Vucìa – Cucina Siciliana</b> ★ 4,5 (2.680)<br><span class="meta">Via Maqueda, 255 · 11:00-00:00 · <a href="tel:+393333930477">+39 333 393 0477</a></span></span><span class="r">20-30 €</span></div>
-<div class="row"><span><b>Trattoria alla Vucciria</b> ★ 4,6 (351)<br><span class="meta">Via Argenteria, 45 · 11:00-23:00 · <a href="tel:+393517107014">+39 351 710 7014</a></span></span><span class="r">20-30 €</span></div>
+H += `<h4 style="font-family:Georgia,serif;font-size:19px;margin:22px 0 14px">La alternativa fuerte</h4>`;
+
+H += stop({c:"fri",img:"ipastari",h:"I Pastari",
+  p:["Pasta fresca y pizza desde 1978, en Via Roma, a 12 minutos del hotel y a 9 de donde tomamos la cervecita. Nos lo recomendaron y encaja mejor de lo que parece.",
+     "<b>Lo que juega a favor con once personas:</b> no cierra cocina en toda la tarde, varias reseñas destacan que los camareros se manejan bien en inglés, y el menú digital tiene versión en español. Con once y cero italiano, eso ahorra media cena de gestiones.",
+     "<b>Lo que juega en contra:</b> no es trattoria siciliana clásica sino pasta y pizza, alguna reseña dice que las raciones de pasta se quedan cortas, y no consta que tengan sala de grupos, que es justo la baza de Del Massimo. Cobran 2 € de cubierto por persona."],
+  meta:"Via Roma, 218 · todos los días <b>12:00-23:00</b>, cocina continua · ★ 4,5 (928) · <b>€€, sobre 20-28 € por persona</b>",
+  warn:"<b>Con once hay que llamar sí o sí.</b> Preguntad directamente si os cogen a 11 un viernes: es el punto que decide entre este y Del Massimo.",
+  acts:[{label:"Llamar",href:"tel:+390912730803",solid:true},
+        {label:"Menú en español",href:"https://www.leggimenu.it/menu/ipastari?l=es"},
+        {label:"ipastari.it",href:"https://www.ipastari.it/"},
+        {label:"Mapa",href:map("I Pastari Via Roma 218")}]});
+
+H += `<div class="sub"><h4>Y si no nos cogen en ninguno de los dos</h4>
+<div class="altcard"><div class="top"><span><b>Taverna dei Canti</b> ★ 4,5 (14.836)<br><span class="meta">Via Maqueda, 229 · 11:00-00:30 · la de más capacidad, pero es una máquina turística</span></span><span class="r">25-35 €</span></div>
+<div class="mini"><a href="tel:+393515006009">Llamar</a><a href="${map('Taverna dei Canti Via Maqueda 229')}" target="_blank" rel="noopener" class="solid">Enlace</a></div></div>
+<div class="altcard"><div class="top"><span><b>Vucìa – Cucina Siciliana</b> ★ 4,5 (2.680)<br><span class="meta">Via Maqueda, 255 · 11:00-00:00</span></span><span class="r">20-30 €</span></div>
+<div class="mini"><a href="tel:+393333930477">Llamar</a><a href="${map('Vucia Cucina Siciliana Via Maqueda 255')}" target="_blank" rel="noopener" class="solid">Enlace</a></div></div>
+<div class="altcard"><div class="top"><span><b>Trattoria alla Vucciria</b> ★ 4,6 (351)<br><span class="meta">Via Argenteria, 45 · 11:00-23:00</span></span><span class="r">20-30 €</span></div>
+<div class="mini"><a href="tel:+393517107014">Llamar</a><a href="${map('Trattoria alla Vucciria Via Argenteria')}" target="_blank" rel="noopener" class="solid">Enlace</a></div></div>
 </div></section>`;
 
 /* ================= SÁBADO ================= */
@@ -348,9 +378,12 @@ H += stop({time:"11:15",c:"sat",img:"immacolata",h:"Chiesa dell'Immacolata Conce
 H += `<div class="sub"><h4>12:00 · Comida en el mercado</h4>
 <p style="margin:0 0 10px;font-size:14px"><b>Aquí el grupo se parte: Toni y Jaime comen de pie y el resto sigue.</b></p>
 <div class="row"><span><b>🧍 De pie, en el propio Capo</b><br><span class="meta">Arancine, panelle, crocchè, sfincione, focaccia. Solo efectivo y precio por delante.</span></span><span class="r">8-12 €</span></div>
-<div class="row"><span><b>🪑 Vucìa</b><br><span class="meta">Via Maqueda, 255 · 11:00-00:00 · <a href="tel:+393333930477">Llamar</a></span></span><span class="r">20-30 €</span></div>
-<div class="row"><span><b>🪑 Taverna dei Canti</b><br><span class="meta">Via Maqueda, 229 · 11:00-00:30 · <a href="tel:+393515006009">Llamar</a></span></span><span class="r">25-35 €</span></div>
-<div class="row"><span><b>🪑 Osteria Re Borbone</b><br><span class="meta">P. Bagnasco, 8 · 12:00-15:00 · <a href="tel:+39091541374">Llamar</a></span></span><span class="r">20-28 €</span></div>
+<div class="altcard"><div class="top"><span><b>🪑 Vucìa</b><br><span class="meta">Via Maqueda, 255 · 11:00-00:00</span></span><span class="r">20-30 €</span></div>
+<div class="mini"><a href="tel:+393333930477">Llamar</a><a href="${map('Vucia Cucina Siciliana Via Maqueda 255')}" target="_blank" rel="noopener" class="solid">Enlace</a></div></div>
+<div class="altcard"><div class="top"><span><b>🪑 Taverna dei Canti</b><br><span class="meta">Via Maqueda, 229 · 11:00-00:30</span></span><span class="r">25-35 €</span></div>
+<div class="mini"><a href="tel:+393515006009">Llamar</a><a href="${map('Taverna dei Canti Via Maqueda 229')}" target="_blank" rel="noopener" class="solid">Enlace</a></div></div>
+<div class="altcard"><div class="top"><span><b>🪑 Osteria Re Borbone</b><br><span class="meta">P. Bagnasco, 8 · 12:00-15:00</span></span><span class="r">20-28 €</span></div>
+<div class="mini"><a href="tel:+39091541374">Llamar</a><a href="${map('Osteria Pizzeria Re Borbone')}" target="_blank" rel="noopener" class="solid">Enlace</a></div></div>
 <p class="meta" style="margin-top:10px">Casi todas las trattorias de Palermo cierran cocina a las 15:00 clavadas. Las dos primeras no, por eso las pongo.</p>
 </div>`;
 
@@ -362,12 +395,12 @@ H += stop({time:"12:45",c:"sat",img:"olivella",h:"Chiesa di Sant'Ignazio all'Oli
 H += stop({c:"sat",img:"salinas",h:"Museo Archeologico Salinas",
   p:["En la misma plaza. Las metopas de los templos de Selinunte. Todo en una planta, se ve en 45 minutos sin agobio."],
   meta:"Piazza Olivella, 1 · sábado 9:00-19:00 · ★ 4,5 (3.811) · <b>6-8 €</b>, menores de 25: 4 €",
-  acts:[{label:"Ver en el mapa",href:map("Museo Archeologico Salinas"),solid:true},{label:"Llamar",href:"tel:+390916116807"}]});
+  acts:[{label:"Llamar",href:"tel:+390916116807",solid:true},{label:"Enlace",href:"https://www.regione.sicilia.it/beni-culturali/museosalinas/"},{label:"Mapa",href:map("Museo Archeologico Salinas")}]});
 
 H += stop({c:"sat",img:"catacombe",h:"Catacumbas de los Capuchinos",
   p:["Plan de tarde para quien siga en Palermo. Ocho mil cuerpos momificados, vestidos y colgados de las paredes. Impresiona de verdad. Prohibido hacer fotos."],
   meta:"Piazza Cappuccini, 1 · 9:00-17:10 · ★ 4,3 (16.239) · <b>5 €</b> · taxi de 10 min desde el centro",
-  acts:[{label:"Ver en el mapa",href:map("Catacombe dei Cappuccini"),solid:true},{label:"Llamar",href:"tel:+390916527389"}]});
+  acts:[{label:"Llamar",href:"tel:+390916527389",solid:true},{label:"Enlace",href:"https://www.catacombepalermo.it/"},{label:"Mapa",href:map("Catacombe dei Cappuccini")}]});
 
 H += stop({c:"sat",img:"branciforte",h:"Palazzo Branciforte",
   p:["El otro plan de tarde. Palacio restaurado por Gae Aulenti, con colección de <i>pupi</i> sicilianos, monedas y una biblioteca preciosa. A 5 min de Piazza Olivella."],
@@ -378,7 +411,7 @@ H += stop({time:"19:30",c:"sat",img:"cascinari",h:"Cena del sábado · Trattoria
   p:["La mejor relación calidad-precio de Palermo, según casi todo el mundo. Trattoria familiar de barrio: calamar relleno, atún con menta y queso, pasta con sardinas, alcachofas, cassata al horno."],
   meta:"Via d'Ossuna, 43/45 · sábado 12:30-14:30 y 19:30-22:00 · ★ 4,6 (2.573) · <b>25-30 € por persona</b> · 20 min andando del hotel o taxi de 8-10 €",
   warn:"<b>Es pequeña y va llenísima: hay que reservar con varios días.</b>",
-  note:"<b>Alternativa:</b> Il Vizietto, Via Argenteria 30, ★ 4,6 (551), 20-28 €. Carta manuscrita, pescado del día y limoncello de la casa al final. <a href='tel:+393383645709'>+39 338 364 5709</a>",
+  note:"<b>Alternativa:</b> Il Vizietto, Via Argenteria 30, ★ 4,6 (551), 20-28 €. Carta manuscrita, pescado del día y limoncello de la casa al final.<div class='mini'><a href='tel:+393383645709'>Llamar</a><a href='"+map("Il Vizietto Via Argenteria")+"' target='_blank' rel='noopener' class='solid'>Enlace</a></div>",
   acts:[{label:"Llamar y reservar",href:"tel:+390916519804",solid:true},
         {label:"Mapa",href:map("Trattoria Ai Cascinari")},{label:"cascinari.com",href:"https://www.cascinari.com/"}]});
 
@@ -403,25 +436,31 @@ H += `<section class="day" id="practico">
 <div class="warn" style="margin-bottom:16px"><b>Bolt no funciona en Italia.</b> No opera ride-hailing en el país, así que no contéis con la app.</div>
 
 <div class="sub"><h4>Moverse por Palermo</h4>
-<div class="row"><span><b>Uber</b><br><span class="meta">En Palermo funciona como Uber Taxi: la app asigna un taxi con licencia y tarifa de taxímetro. La opción más cómoda.</span></span></div>
-<div class="row"><span><b>FREE NOW</b><br><span class="meta">La app más usada en Italia para pedir taxi oficial.</span></span></div>
-<div class="row"><span><b>appTaxi / itTaxi</b><br><span class="meta">Apps de las cooperativas italianas.</span></span></div>
-<div class="row"><span><b>Radiotaxi Trinacria</b><br><span class="meta"><a href="tel:+39091225455">+39 091 225455</a> · <a href="tel:+390916878">+39 091 6878</a></span></span></div>
+<div class="altcard"><div class="top"><span><b>Uber</b><br><span class="meta">En Palermo funciona como Uber Taxi: la app asigna un taxi con licencia y tarifa de taxímetro. La opción más cómoda.</span></span></div>
+<div class="mini"><a href="https://www.uber.com/it/es/" target="_blank" rel="noopener" class="solid">Enlace</a></div></div>
+<div class="altcard"><div class="top"><span><b>FREE NOW</b><br><span class="meta">La app más usada en Italia para pedir taxi oficial.</span></span></div>
+<div class="mini"><a href="https://www.free-now.com/it/" target="_blank" rel="noopener" class="solid">Enlace</a></div></div>
+<div class="altcard"><div class="top"><span><b>appTaxi</b><br><span class="meta">La app de las cooperativas italianas, con cobertura en Palermo.</span></span></div>
+<div class="mini"><a href="https://www.apptaxi.it/" target="_blank" rel="noopener" class="solid">Enlace</a></div></div>
+<div class="altcard"><div class="top"><span><b>Radiotaxi Trinacria</b><br><span class="meta">El teléfono de toda la vida, por si falla la app.</span></span></div>
+<div class="mini"><a href="tel:+39091225455">Llamar</a><a href="https://www.6878.it/" target="_blank" rel="noopener" class="solid">Enlace</a></div></div>
 <p class="meta" style="margin-top:10px"><b>Centro → aeropuerto: 45-65 €</b> según hora y tráfico. Pedidlo con 10-15 minutos de margen, que en Palermo las esperas de la app se estiran.</p>
 </div>
 
 <div class="sub"><h4>Consigna de equipaje</h4>
 <p style="margin:0;font-size:14px"><b>Stow Your Bags – Teatro Massimo</b></p>
-<p class="meta">Via dell'Orologio, 25 · 7:00-23:00 · ★ 4,8 (421) · <b>~5-7 € por bulto</b>. Se reserva online y se entra con un QR. <a href="tel:+390916198081">+39 091 619 8081</a></p>
+<p class="meta">Via dell'Orologio, 25 · 7:00-23:00 · ★ 4,8 (421) · <b>~5-7 € por bulto</b>. Se reserva online y se entra con un QR.</p>
+<div class="mini"><a href="tel:+390916198081">Llamar</a><a href="${map('Stow Your Bags Via dell Orologio 25')}" target="_blank" rel="noopener" class="solid">Enlace</a></div>
 </div>
 
 <div class="sub"><h4>Lo que hay que reservar</h4>
-<div class="chk"><span>☐</span><span>Cena del viernes en <b>Trattoria Del Massimo</b> (por correo) — <i>Yo</i></span></div>
-<div class="chk"><span>☐</span><span>Entradas <b>Cappella Palatina</b> — <i>Yo</i></span></div>
-<div class="chk"><span>☐</span><span>Entradas <b>Teatro Massimo</b> — <i>Yo</i></span></div>
-<div class="chk"><span>☐</span><span><b>Minibús</b> aeropuerto-hotel del jueves — <i>Yo</i></span></div>
-<div class="chk"><span>☐</span><span>Cena del sábado en <b>Ai Cascinari</b> — <i>¿alguien se apunta?</i></span></div>
+<div class="chk"><span>☐</span><span>Cena del viernes: <b>Trattoria Del Massimo</b> o <b>I Pastari</b> — <i>por correo o llamando</i></span></div>
+<div class="chk"><span>☐</span><span>Entradas <b>Cappella Palatina</b> — <i>online, con antelación</i></span></div>
+<div class="chk"><span>☐</span><span>Entradas <b>Teatro Massimo</b> — <i>online, con antelación</i></span></div>
+<div class="chk"><span>☐</span><span><b>Minibús</b> aeropuerto-hotel del jueves — <i>online, con antelación</i></span></div>
+<div class="chk"><span>☐</span><span>Cena del sábado en <b>Ai Cascinari</b> — <i>llamando, con varios días</i></span></div>
 <div class="chk"><span>☐</span><span>Descargaos <b>Uber</b> o <b>FREE NOW</b> antes de salir — <i>cada uno</i></span></div>
+<p class="meta" style="margin-top:12px"><b>Cómo lo pagamos:</b> las entradas y el minibús hay que sacarlos online por adelantado, así que se reparte: cada uno se encarga de una cosa, la paga con su tarjeta y al final cuadramos todo por Bizum. Repartíos en el grupo quién coge qué.</p>
 </div>
 
 <div class="note"><b>Llevad efectivo:</b> 40-50 € por cabeza en billetes pequeños. Los mercados y el street food no aceptan tarjeta.<br><br>
@@ -478,37 +517,86 @@ H += `<section class="day" id="presupuesto">
 
 <div class="sub" style="margin-top:16px"><h4>Para llevar encima: 200-220 €</h4>
 <p style="margin:0 0 8px;font-size:14px">Es el punto medio y da margen de sobra.</p>
-<p class="meta"><b>Ajustes:</b> quien no cene el sábado resta 25-32 € · quien se salte Salinas y las Catacumbas resta 13 € · las dos entradas grandes (Cappella Palatina y Teatro Massimo, 34 €) las pago yo por adelantado y las repartimos.</p>
+<p class="meta"><b>Ajustes:</b> quien no cene el sábado resta 25-32 € · quien se salte Salinas y las Catacumbas resta 13 € · las dos entradas grandes (Cappella Palatina y Teatro Massimo, 34 €) hay que sacarlas online por adelantado: se encarga uno de cada una y lo cuadramos por Bizum.</p>
 </div></section>`;
 
 /* ================= CORREO ================= */
 H += `<section class="day" id="correo">
-<div class="dayhead prac"><div class="n">@</div><div><h2>La reserva del viernes</h2><p>Trattoria Del Massimo · 11 personas · viernes 11 a las 20:30</p></div></div>
+<div class="dayhead prac"><div class="n">@</div><div><h2>Las reservas del viernes</h2><p>Dos restaurantes en juego · 11 personas · viernes 11 a las 20:30</p></div></div>
 
-<div class="sub"><h4>Datos del restaurante</h4>
+<p style="font-size:14px;margin:0 0 18px">Escribimos a los dos y nos quedamos con el que confirme antes y mejor. En ambos casos: mandamos el italiano en el cuerpo del mensaje, y si en 48 horas no contestan se remata por teléfono. Para once personas un viernes de diciembre no conviene fiarse solo del correo.</p>
+
+<div class="sub"><h4>1 · Trattoria Del Massimo</h4>
+<p class="meta" style="margin-bottom:10px">Trattoria siciliana clásica con sala de banquetes, que es su gran baza para un grupo de once. A 10 min del hotel.</p>
 <div class="row"><span>Dirección</span><span class="r" style="white-space:normal">Piazza Giuseppe Verdi, 25/26</span></div>
 <div class="row"><span>Correo</span><span class="r" style="white-space:normal"><a href="mailto:trattoriadelmassimo@gmail.com">trattoriadelmassimo@gmail.com</a></span></div>
 <div class="row"><span>Teléfono</span><span class="r"><a href="tel:+39091326155">+39 091 326155</a></span></div>
-<div class="row"><span>Web</span><span class="r"><a href="http://trattoriadelmassimo.com/" target="_blank" rel="noopener">trattoriadelmassimo.com</a></span></div>
+<div class="row"><span>Horario</span><span class="r">18:30-23:00</span></div>
 <div class="row"><span>Precio</span><span class="r">25-30 €/persona</span></div>
+<div class="mini"><a href="tel:+39091326155">Llamar</a><a href="mailto:trattoriadelmassimo@gmail.com">Escribir</a><a href="http://trattoriadelmassimo.com/" target="_blank" rel="noopener" class="solid">Enlace</a></div>
 </div>
 
-<p style="font-size:14px;margin:0 0 12px">Mando el italiano en el cuerpo del mensaje. El inglés y el español están aquí por si quien lo envía prefiere otro idioma o acaba llamando.</p>
-
-<div class="tabs">
-  <button class="on" data-l="it">Italiano</button>
-  <button data-l="en">English</button>
-  <button data-l="es">Español</button>
+<div class="tabs" data-for="dm">
+  <button class="on" data-l="it">Italiano</button><button data-l="en">English</button><button data-l="es">Español</button>
 </div>
-<div class="mail" id="mailbox"></div>
-<button class="copy" id="copybtn">Copiar el correo</button>
-<p class="meta" style="margin-top:10px">Sustituid <b>[NOMBRE Y APELLIDO]</b> y <b>[TELÉFONO MÓVIL]</b> antes de enviarlo. Si en 48 horas no contestan, se remata por teléfono: para once personas un viernes de diciembre no me fío solo del correo.</p>
+<div class="mail" id="mail-dm"></div>
+<button class="copy" data-copy="dm">Copiar el correo</button>
+
+<div class="sub" style="margin-top:28px"><h4>2 · I Pastari</h4>
+<p class="meta" style="margin-bottom:10px">Pasta fresca y pizza, cocina continua hasta las 23:00 y menú en español. A 12 min del hotel. Aquí lo que hay que confirmar sí o sí es que quepan once.</p>
+<div class="row"><span>Dirección</span><span class="r" style="white-space:normal">Via Roma, 218</span></div>
+<div class="row"><span>Correo</span><span class="r" style="white-space:normal"><a href="mailto:info@ipastari.it">info@ipastari.it</a></span></div>
+<div class="row"><span>Teléfono</span><span class="r"><a href="tel:+390912730803">+39 091 273 0803</a></span></div>
+<div class="row"><span>Horario</span><span class="r">12:00-23:00</span></div>
+<div class="row"><span>Precio</span><span class="r">20-28 €/persona</span></div>
+<div class="mini"><a href="tel:+390912730803">Llamar</a><a href="mailto:info@ipastari.it">Escribir</a><a href="https://www.ipastari.it/" target="_blank" rel="noopener" class="solid">Enlace</a></div>
+<p class="meta" style="margin-top:10px">Cobran 2 € de cubierto por persona, así que al total hay que sumarle 22 €.</p>
+</div>
+
+<div class="tabs" data-for="ip">
+  <button class="on" data-l="it">Italiano</button><button data-l="en">English</button><button data-l="es">Español</button>
+</div>
+<div class="mail" id="mail-ip"></div>
+<button class="copy" data-copy="ip">Copiar el correo</button>
+
+<p class="meta" style="margin-top:14px">Sustituid <b>[NOMBRE Y APELLIDO]</b> y <b>[TELÉFONO MÓVIL]</b> antes de enviarlo.</p>
 </section>`;
 
 document.getElementById('app').innerHTML = H;
 
-/* correo */
+/* menú superior: marca la sección en la que estás */
+(function(){
+  const links = [...document.querySelectorAll('nav a')];
+  const secs  = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const navEl = document.querySelector('nav');
+  if (!navEl || !secs.length) return;
+  let current = null;
+  function mark(sec){
+    if (sec === current) return;
+    current = sec;
+    links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + sec.id));
+    const act = navEl.querySelector('a.on');
+    if (act) {
+      const left = act.offsetLeft - (navEl.clientWidth - act.offsetWidth) / 2;
+      navEl.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
+    }
+  }
+  function onScroll(){
+    const line = navEl.getBoundingClientRect().bottom + 8;
+    let best = secs[0];
+    for (const sec of secs){
+      if (sec.getBoundingClientRect().top <= line) best = sec;
+    }
+    mark(best);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+})();
+
+/* correos de reserva: dos restaurantes, tres idiomas cada uno */
 const MAILS = {
+dm:{
 it:{s:"Prenotazione tavolo 11 persone - venerdì 11 dicembre, ore 20:30",
 b:`Buonasera,
 
@@ -566,23 +654,94 @@ Un cordial saludo,
 [NOMBRE Y APELLIDO]
 Tel. +34 [TELÉFONO MÓVIL]
 Para llamadas, por favor, solo en inglés o español (no hablamos italiano).`}
-};
-let lang='it';
-const box=document.getElementById('mailbox'), btn=document.getElementById('copybtn');
-function render(){ box.innerHTML='<span class="subj">Asunto: '+MAILS[lang].s+'</span>'+MAILS[lang].b; }
-render();
-document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{
-  document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('on'));
-  b.classList.add('on'); lang=b.dataset.l; render();
+},
+ip:{
+it:{s:"Prenotazione tavolo 11 persone - venerdì 11 dicembre, ore 20:30",
+b:`Buonasera,
+
+vorrei prenotare un tavolo per 11 persone per venerdì 11 dicembre alle ore 20:30.
+
+Siamo un gruppo di amici spagnoli in visita a Palermo. Abbiamo visto il vostro menù online e ci piacerebbe cenare da voi. Vi chiederei cortesemente di confermarmi:
+
+- se riuscite ad accogliere un tavolo di 11 persone a quell'orario
+- se avete un menù di gruppo o una proposta fissa da consigliarci, con il prezzo indicativo a persona
+- se è richiesta una caparra per confermare la prenotazione
+
+Per email potete rispondermi in italiano o in inglese, senza problemi.
+
+In attesa di un vostro riscontro, vi ringrazio.
+
+Cordiali saluti,
+[NOMBRE Y APELLIDO]
+Tel. +34 [TELÉFONO MÓVIL]
+Per telefono, per favore, solo in inglese o in spagnolo (non parliamo italiano).`},
+en:{s:"Table booking for 11 people - Friday 11 December, 8:30 pm",
+b:`Good evening,
+
+I would like to book a table for 11 people on Friday 11 December at 8:30 pm.
+
+We are a group of Spanish friends visiting Palermo. We have seen your menu online and we would love to have dinner with you. Could you please confirm:
+
+- whether you can seat a table of 11 people at that time
+- whether you offer a set or group menu you would recommend, with the approximate price per person
+- whether a deposit is required to confirm the booking
+
+You can reply by email in Italian or English, no problem.
+
+Thank you very much in advance.
+
+Kind regards,
+[NOMBRE Y APELLIDO]
+Phone: +34 [TELÉFONO MÓVIL]
+For phone calls, please, English or Spanish only (we do not speak Italian).`},
+es:{s:"Reserva de mesa para 11 personas - viernes 11 de diciembre, 20:30",
+b:`Buenas tardes,
+
+Me gustaría reservar una mesa para 11 personas el viernes 11 de diciembre a las 20:30.
+
+Somos un grupo de amigos españoles de visita en Palermo. Hemos visto su menú online y nos gustaría cenar con ustedes. Les agradecería que me confirmaran:
+
+- si pueden acoger una mesa de 11 personas a esa hora
+- si tienen menú de grupo o una propuesta cerrada que nos recomienden, con el precio orientativo por persona
+- si hace falta señal o depósito para confirmar la reserva
+
+Pueden responderme por email en italiano o en inglés, sin problema.
+
+Muchas gracias de antemano.
+
+Un cordial saludo,
+[NOMBRE Y APELLIDO]
+Tel. +34 [TELÉFONO MÓVIL]
+Para llamadas, por favor, solo en inglés o español (no hablamos italiano).`}
+}};
+
+const LANG = { dm:'it', ip:'it' };
+function paint(k){
+  const box = document.getElementById('mail-'+k);
+  if(!box) return;
+  const m = MAILS[k][LANG[k]];
+  box.innerHTML = '<span class="subj">Asunto: '+m.s+'</span>'+m.b;
+}
+document.querySelectorAll('.tabs').forEach(t=>{
+  const k = t.dataset.for;
+  t.querySelectorAll('button').forEach(b=> b.onclick = ()=>{
+    t.querySelectorAll('button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on'); LANG[k] = b.dataset.l; paint(k);
+  });
+  paint(k);
 });
-btn.onclick=async()=>{
-  const txt='Asunto: '+MAILS[lang].s+'\n\n'+MAILS[lang].b;
-  try{ await navigator.clipboard.writeText(txt); }
-  catch(e){ const t=document.createElement('textarea'); t.value=txt; document.body.appendChild(t);
-    t.select(); document.execCommand('copy'); t.remove(); }
-  btn.textContent='Copiado ✓'; btn.classList.add('ok');
-  setTimeout(()=>{ btn.textContent='Copiar el correo'; btn.classList.remove('ok'); },2000);
-};
+document.querySelectorAll('.copy').forEach(btn=>{
+  const k = btn.dataset.copy;
+  btn.onclick = async ()=>{
+    const m = MAILS[k][LANG[k]];
+    const txt = 'Asunto: '+m.s+'\n\n'+m.b;
+    try{ await navigator.clipboard.writeText(txt); }
+    catch(e){ const t=document.createElement('textarea'); t.value=txt; document.body.appendChild(t);
+      t.select(); document.execCommand('copy'); t.remove(); }
+    btn.textContent='Copiado ✓'; btn.classList.add('ok');
+    setTimeout(()=>{ btn.textContent='Copiar el correo'; btn.classList.remove('ok'); },2000);
+  };
+});
 </script>
 </body>
 </html>
