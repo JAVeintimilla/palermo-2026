@@ -72,6 +72,8 @@ nav a.jordi{color:#fff;background:var(--red)}
 /* STOP */
 .stop{background:var(--white);border:1px solid var(--line);margin-bottom:16px;overflow:hidden}
 .stop img{width:100%;height:190px;object-fit:cover;display:block;background:var(--plaster2)}
+.gal{display:flex;gap:3px}
+.gal img{width:33.33%;height:105px;object-fit:cover;display:block;background:var(--plaster2)}
 .stop .in{padding:14px 15px 15px}
 .time{display:inline-block;font-family:Georgia,serif;font-weight:700;font-size:15px;
       color:#fff;padding:2px 9px;margin-bottom:8px}
@@ -196,7 +198,10 @@ const IMG = {
   salinas:"AG9NLjCQKqZMSM0rgeUwTlTO74Qoc1N5Jl8OZxK-BW6f1x73nR75u32PJQo0cdkQvVXTKXK4F0jw2wwHO2UUdzo8o0LPvbPE0coJRFMMc4lOecPz3nY_7pgQAYCrJMFYGCv8KHmkaS6zqJHZ5JIlIg=s4800-w800-h600",
   branciforte:"AG9NLjCmfgFq0MlxHF-XWwS68-EAClyP8rf4FYp1nPk8KpnxYWQOPmI-OlGCT6ka34H5YIMLQKExESrGBl7HJTN6udcivxCP6WangGkXp-CtQoAvRtsqm7vn-Y-vJFGKd9MGFGoKSY7KIoHC6PhZ9g0=s4800-w800-h600",
   catacombe:"AG9NLjDXRwE8lmW8Cp8iXeZE8i_NUV06HKvpjmPOQ_GL-g8LuaaUcyLJrVW8QUuLjiMn3aWB-cObOiWh0cK8Nv-Uy87P-Vt7ggpch1X16ckjuCP8S2X8FKUMRcG0hcxqXWk1Qb6rXgHGV2D0ADES6Q=s4800-w800-h600",
-  ipastari:"https://www.leggimenu.it/menu/uploads/impostazioni/7hpkbeij85q2/1215138530686500ea4fea09.52680157.jpeg",
+  ipastari:"AG9NLjDErgRtOnZ2RfZEWphShWk8k_MjFCKXz2ocWwHWnbDJ0rVaQOiAUwPhSQZBH1aPpnCSR2_IPAtGCnaBQu7aIgwBuR3_ihGYcZbIbJafgKzbbPgXmUF4-fmbaKpXxUtEnrEYd3t-gv4Cjn9emR2ZT8FjtQ=s4800-w800-h600",
+  ipastari2:"AG9NLjB9RchlIizfPpodGCIhUC3gvuQRQTBFrNAEr6KlvqBGuod9FaJ8I_s-fRY35bi0AL6ltNJ0-ZiJd6lEDm9uP_V9v0vQlGKJTFcot-4qzV07iVa2XDaCkfoHtXzyFnDrKtgIGdjgCq0Hp17dD7tsLRN8=s4800-w800-h600",
+  ipastari3:"AG9NLjDcSyVX2_FBngJOsdzycK-LcAz8Er3nZSxHmbsQwCbS1W_P2dt9_THNq3iovnoYHSI2OSlQP8W4_fl9ymRdQgrmSsZGO7v7WtyFebixQv-M_hc6XeWDsByalc9-gTprRYNq-s45t2sPY2RDpiAIFl-ziQ=s4800-w800-h600",
+  ipastari4:"AG9NLjB9cijUMHN6SWN67Uvb-jERVbtAU_McUSQynNZyCkyXmtgzEyjRmXKP9F1t2qrXK32AtBz5Fcj8KiTsK9uyDefP4LkdT70WL0RJY2CC-1tf0bpQSZS3uMlCBAy5WBZ9oziPI-ACGvOuRVeP0E-Q0m5ktg=s4800-w800-h600",
   cascinari:"AG9NLjA2wT07ZceOuOXBggdzCXtwx2fj5B83-X2Hu48g-x5A1CzYIGewwhG2Ryq4kIMZZjAmAufOCvB3e0shvcIbldKpCcPZPvONHHzWzwexrDMiNMqU7LImmxFtZcQ3taMxWL5gvTmHXpuuktQ4u4ybJ2PZfQ=s4800-w800-h600"
 };
 const map = q => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q + ", Palermo");
@@ -206,6 +211,7 @@ function stop(o){
     `<a href="${a.href}" ${a.href.startsWith('http')?'target="_blank" rel="noopener"':''} class="${a.solid?'solid':''}">${a.label}</a>`).join('');
   return `<article class="stop">
     ${o.img?`<img loading="lazy" src="${IMG[o.img].startsWith('http')?IMG[o.img]:P+IMG[o.img]}" alt="${o.h}" onerror="this.style.display='none'">`:''}
+    ${o.gal?`<div class="gal">${o.gal.map(g=>`<img loading="lazy" src="${P+IMG[g]}" alt="${o.h}" onerror="this.style.display='none'">`).join('')}</div>`:''}
     <div class="in">
       ${o.time?`<div class="time t-${o.c}">${o.time}</div>`:''}${o.chip?`<span class="chip ${o.chipClass||''}">${o.chip}</span>`:''}
       <h3>${o.h}</h3>
@@ -331,35 +337,42 @@ H += stop({time:"16:30",c:"fri",img:"vucciria",h:"Vucciria y La Kalsa",
   meta:"Piazza Caracciolo · ★ 4,2 (2.183) · gratis",
   acts:[{label:"Vucciria",href:map("La Vucciria mercato"),solid:true},{label:"Giardino Garibaldi",href:map("Giardino Garibaldi Piazza Marina")}]});
 
-H += stop({time:"18:45",c:"fri",img:"bottiglieria",h:"Cervecita previa",
-  p:["<b>Bottiglieria del Massimo.</b> Local grande, que es lo que necesitamos siendo once de pie. Cerveza, vinos sicilianos y tablas de embutidos y quesos por si alguien va justo hasta la cena."],
-  meta:"Via Salvatore Spinuzza, 59 · martes a domingo 11:00-2:00 · ★ 4,3 (1.227) · copa 7-12 €, tabla 15-25 €<br><b>Cómo llegamos:</b> desde la Vucciria, 650 m y 9 min; desde Piazza Marina, 1,3 km y 17 min. Está a 5 min del restaurante.",
-  acts:[{label:"Ver en el mapa",href:map("Bottiglieria del Massimo"),solid:true},
-        {label:"Web",href:"https://www.bottiglieriadelmassimo.it/"},{label:"Llamar",href:"tel:+39091335730"}]});
+H += stop({time:"18:45",c:"fri",img:"bottiglieria",h:"Cervecita previa · Beer & Co",
+  p:["Via Maqueda, 257. Grande, a pie de calle y con terraza, que es lo que necesitamos siendo once de pie. Spritz y cervezas a buen precio, y pinsa y bruschette para picar si alguien va justo hasta la cena.",
+     "<b>Y sobre todo, está al lado del restaurante:</b> acabas la cerveza, cruzas y te sientas a cenar."],
+  meta:"Via Maqueda, 257 · abierto 11:00-00:00 · ★ 4,4 (390) · cerveza o spritz 4-7 €, pinsa para compartir 8-12 €<br><b>240 metros de I Pastari, 3 minutos andando.</b> Desde la Vucciria, donde estaremos por la tarde, son 700 m y 9 minutos.",
+  note:"<b>Si lo encontramos petado</b>, High Hops (Via Giuseppe Patania 34, ★ 4,9) tiene la mejor cerveza artesana de la zona y está a 6 minutos del restaurante. Es más pequeño, así que con once puede ir justo.",
+  acts:[{label:"Ver en el mapa",href:map("Beer and Co Via Maqueda 257"),solid:true},
+        {label:"Llamar",href:"tel:+390917288556"},
+        {label:"High Hops",href:map("High Hops Via Giuseppe Patania")}]});
 
-H += stop({time:"20:30",c:"fri",img:"delmassimo",h:"La cena de los once · Trattoria Del Massimo",
-  p:["Está justo detrás del Teatro Massimo, a 10 min del hotel. La he elegido porque <b>tiene sala de banquetes además del comedor</b>, así que once personas no son un problema — que es donde fallan casi todas las trattorias buenas de Palermo, que son minúsculas.",
-     "Gestión familiar desde 2015, cocina siciliana de verdad: sarde a beccafico, pasta con le sarde, anelletti al forno, busiate, frittura de calamares, caponata y cassata."],
-  meta:"Piazza Giuseppe Verdi, 25/26 · 12:00-15:30 y 18:30-23:00 · ★ 4,4 (2.122)<br><b>25-30 € por persona</b> · vino de la casa ~11 €/litro · 275-330 € los once<br>Web solo en italiano. Inglés casi seguro, español no lo doy por hecho.",
-  warn:"<b>Nos sentamos antes de las 21:00.</b> Varias reseñas avisan de que a partir de las 22:00 la cocina baja el nivel. El correo de reserva está más abajo, en tres idiomas y listo para copiar.",
-  acts:[{label:"Escribir",href:"mailto:trattoriadelmassimo@gmail.com",solid:true},
-        {label:"Llamar",href:"tel:+39091326155"},{label:"Mapa",href:map("Trattoria Del Massimo Piazza Verdi")},
-        {label:"Web",href:"http://trattoriadelmassimo.com/"}]});
-
-H += `<h4 style="font-family:Georgia,serif;font-size:19px;margin:22px 0 14px">La alternativa fuerte</h4>`;
-
-H += stop({c:"fri",img:"ipastari",h:"I Pastari",
-  p:["Pasta fresca y pizza desde 1978, en Via Roma, a 12 minutos del hotel y a 9 de donde tomamos la cervecita. Nos lo recomendaron y encaja mejor de lo que parece.",
-     "<b>Lo que juega a favor con once personas:</b> no cierra cocina en toda la tarde, varias reseñas destacan que los camareros se manejan bien en inglés, y el menú digital tiene versión en español. Con once y cero italiano, eso ahorra media cena de gestiones.",
-     "<b>Lo que juega en contra:</b> no es trattoria siciliana clásica sino pasta y pizza, alguna reseña dice que las raciones de pasta se quedan cortas, y no consta que tengan sala de grupos, que es justo la baza de Del Massimo. Cobran 2 € de cubierto por persona."],
-  meta:"Via Roma, 218 · todos los días <b>12:00-23:00</b>, cocina continua · ★ 4,5 (928) · <b>€€, sobre 20-28 € por persona</b>",
-  warn:"<b>Con once hay que llamar sí o sí.</b> Preguntad directamente si os cogen a 11 un viernes: es el punto que decide entre este y Del Massimo.",
-  acts:[{label:"Llamar",href:"tel:+390912730803",solid:true},
-        {label:"Menú en español",href:"https://www.leggimenu.it/menu/ipastari?l=es"},
+H += stop({time:"20:30",c:"fri",img:"ipastari",gal:["ipastari2","ipastari3","ipastari4"],chip:"Reservado",h:"La cena de los once · I Pastari",
+  p:["<b>Confirmado por Simone Domino, fundador del restaurante:</b> mesa para 11 personas el viernes 11 a las 20:30. <b>No piden señal</b>, pero sí que avisemos cuanto antes si cambia el número de comensales.",
+     "Pasta fresca hecha a mano y pizza, con la cocina a la vista, en Via Roma. La carta es corta, que en un restaurante suele ser buena señal. Los camareros se manejan bien en inglés y <b>el menú lleva foto de cada plato</b>, así que pedir no tiene misterio."],
+  meta:`<b>Cada uno pide lo que le apetezca.</b> Hay dos formas y se pueden mezclar en la misma mesa:<br><br>
+  <b>1 · Menú cerrado — 14,90 €</b><br>
+  Un primero <i>o</i> una pizza a elegir, un refresco y un café. Sale a cuenta si vas directo al grano.<br><br>
+  <b>2 · A la carta</b><br>
+  Sin ataduras: entrantes, pasta, pizza, postre, vino y cerveza. Y quien coja el menú puede pedir aparte lo que no entre en él.<br><br>
+  Via Roma, 218 · todos los días 12:00-23:00 · ★ 4,5 (939) · <b>2 € de cubierto por persona</b><br>
+  <b>1,05 km del hotel, 13 minutos andando.</b>`,
+  note:"<b>Qué piden los que repiten:</b> la pizza bolognese, que sale en media docena de reseñas como lo mejor de la casa; la carbonara; y las busiate con pesto de pistacho y guanciale de los Nebrodi. Dos avisos de reseñas recientes: el pan de antes de comer les sale flojo y las raciones de pasta se quedan algo cortas, así que si vienes con hambre, entrante o pizza.",
+  acts:[{label:"Menú en español",href:"https://www.leggimenu.it/menu/ipastari?l=es",solid:true},
+        {label:"Llamar",href:"tel:+390912730803"},
         {label:"ipastari.it",href:"https://www.ipastari.it/"},
         {label:"Mapa",href:map("I Pastari Via Roma 218")}]});
 
-H += `<div class="sub"><h4>Y si no nos cogen en ninguno de los dos</h4>
+H += stop({time:"22:15",c:"fri",img:"vucciria",h:"Las copas, de camino a casa",
+  p:["La suerte es que la zona de copas nos pilla en el camino de vuelta. Salimos del restaurante y subimos andando hacia el hotel, parando donde apetezca.",
+     "<b>Primera parada, a 150 metros: la Vucciria.</b> De noche la Piazza Caracciolo se llena de gente bebiendo en la calle, y la <b>Taverna Azzurra</b> (Via Maccherronai 15, ★ 4,5 con 1.709 opiniones) es la institución del barrio: taberna vieja, barata, con la gente fuera y la música alta. Ojo, que <b>cierra a las 23:00</b>, así que es parada corta.",
+     "<b>Después subimos por Via Roma hasta Via Principe di Belmonte</b>, la calle peatonal de detrás del hotel. Son 1,1 km y 14 minutos de paseo llano. Allí Spinnato y Cafe 88 aguantan <b>hasta la 1:00</b> y el hotel queda a 3 minutos, que a esas horas se agradece."],
+  meta:"<b>El recorrido:</b> I Pastari → Vucciria, 150 m · Vucciria → Via Principe di Belmonte, 1,1 km y 14 min · de allí al hotel, 3 min.<br>Cerveza en la Vucciria 3-5 € · copa en Belmonte 8-12 €",
+  note:"<b>Si alguien quiere coctelería de verdad para rematar:</b> Palco, en Piazzale Ungheria 9 (★ 4,9), está a 8 minutos del hotel y cierra tarde. Cóctel 10-14 €.",
+  acts:[{label:"Taverna Azzurra",href:map("Taverna Azzurra Via Maccherronai"),solid:true},
+        {label:"Via Principe di Belmonte",href:map("Via Principe di Belmonte")},
+        {label:"Palco",href:map("Palco Unexpected Cocktails")}]});
+
+H += `<div class="sub"><h4>Si hubiera que mover la reserva</h4>
 <div class="altcard"><div class="top"><span><b>Taverna dei Canti</b> ★ 4,5 (14.836)<br><span class="meta">Via Maqueda, 229 · 11:00-00:30 · la de más capacidad, pero es una máquina turística</span></span><span class="r">25-35 €</span></div>
 <div class="mini"><a href="tel:+393515006009">Llamar</a><a href="${map('Taverna dei Canti Via Maqueda 229')}" target="_blank" rel="noopener" class="solid">Enlace</a></div></div>
 <div class="altcard"><div class="top"><span><b>Vucìa – Cucina Siciliana</b> ★ 4,5 (2.680)<br><span class="meta">Via Maqueda, 255 · 11:00-00:00</span></span><span class="r">20-30 €</span></div>
@@ -431,9 +444,17 @@ H += stop({time:"19:30",c:"sat",img:"cascinari",h:"Cena del sábado · Trattoria
   p:["La mejor relación calidad-precio de Palermo, según casi todo el mundo. Trattoria familiar de barrio: calamar relleno, atún con menta y queso, pasta con sardinas, alcachofas, cassata al horno."],
   meta:"Via d'Ossuna, 43/45 · sábado 12:30-14:30 y 19:30-22:00 · ★ 4,6 (2.573) · <b>25-30 € por persona</b> · 20 min andando del hotel o taxi de 8-10 €",
   warn:"<b>Es pequeña y va llenísima: hay que reservar con varios días.</b>",
-  note:"<b>Alternativa:</b> Il Vizietto, Via Argenteria 30, ★ 4,6 (551), 20-28 €. Carta manuscrita, pescado del día y limoncello de la casa al final.<div class='mini'><a href='tel:+393383645709'>Llamar</a><a href='"+map("Il Vizietto Via Argenteria")+"' target='_blank' rel='noopener' class='solid'>Enlace</a></div>",
+  note:"<b>Y una tercera:</b> Il Vizietto, Via Argenteria 30, ★ 4,6 (551), 20-28 €. Carta manuscrita, pescado del día y limoncello de la casa al final.<div class='mini'><a href='tel:+393383645709'>Llamar</a><a href='"+map("Il Vizietto Via Argenteria")+"' target='_blank' rel='noopener' class='solid'>Enlace</a></div>",
   acts:[{label:"Llamar y reservar",href:"tel:+390916519804",solid:true},
         {label:"Mapa",href:map("Trattoria Ai Cascinari")},{label:"cascinari.com",href:"https://www.cascinari.com/"}]});
+
+H += stop({c:"sat",img:"delmassimo",h:"Trattoria Del Massimo",
+  p:["Trattoria siciliana clásica detrás del Teatro Massimo, a 10 min del hotel. Su baza es que <b>tiene sala de banquetes además del comedor</b>, así que once personas no son problema.",
+     "Gestión familiar desde 2015, cocina siciliana de verdad: sarde a beccafico, pasta con le sarde, anelletti al forno, busiate, frittura de calamares, caponata y cassata."],
+  meta:"Piazza Giuseppe Verdi, 25/26 · 12:00-15:30 y 18:30-23:00 · ★ 4,4 (2.122)<br><b>25-30 € por persona</b> · vino de la casa ~11 €/litro · 275-330 € los once<br>El correo de reserva está en la sección de la cena del viernes, listo para copiar en tres idiomas.",
+  acts:[{label:"Escribir",href:"mailto:trattoriadelmassimo@gmail.com",solid:true},
+        {label:"Llamar",href:"tel:+39091326155"},{label:"Mapa",href:map("Trattoria Del Massimo Piazza Verdi")},
+        {label:"Web",href:"http://trattoriadelmassimo.com/"}]});
 
 H += `<div class="sub"><h4>Distancias a pie desde el hotel</h4>
 <div class="row"><span>Via Principe di Belmonte <span class="meta">(Scjavúru, Spinnato)</span></span><span class="r">3-4 min</span></div>
@@ -474,7 +495,7 @@ H += `<section class="day" id="practico">
 </div>
 
 <div class="sub"><h4>Lo que hay que reservar</h4>
-<div class="chk"><span>☐</span><span>Cena del viernes: <b>Trattoria Del Massimo</b> o <b>I Pastari</b> — <i>por correo o llamando</i></span></div>
+<div class="chk"><span>✅</span><span>Cena del viernes en <b>I Pastari</b> — <i>confirmada, sin señal</i></span></div>
 <div class="chk"><span>☐</span><span>Entradas <b>Cappella Palatina</b> — <i>online, con antelación</i></span></div>
 <div class="chk"><span>☐</span><span>Entradas <b>Teatro Massimo</b> — <i>online, con antelación</i></span></div>
 <div class="chk"><span>✅</span><span><b>Minibús</b> ida y vuelta — <i>reservado por Raúl vía Booking</i></span></div>
@@ -512,11 +533,11 @@ H += `<section class="day" id="presupuesto">
 <tr><td>Viernes · desayuno</td><td class="r" colspan="2">incluido</td></tr>
 <tr><td>Viernes · comida en Ballarò</td><td class="r">8 €</td><td class="r">15 €</td></tr>
 <tr><td>Viernes · cervecita</td><td class="r">8 €</td><td class="r">16 €</td></tr>
-<tr><td>Viernes · <b>cena</b></td><td class="r">25 €</td><td class="r">32 €</td></tr>
+<tr><td>Viernes · <b>cena</b> <span class="meta">(menú 14,90 / carta)</span></td><td class="r">17 €</td><td class="r">30 €</td></tr>
 <tr><td>Sábado · desayuno</td><td class="r" colspan="2">incluido</td></tr>
 <tr><td>Sábado · comida</td><td class="r">8 €</td><td class="r">28 €</td></tr>
 <tr><td>Sábado · <b>cena</b></td><td class="r">25 €</td><td class="r">32 €</td></tr>
-<tr><td><b>Subtotal</b></td><td class="r"><b>82 €</b></td><td class="r"><b>157 €</b></td></tr>
+<tr><td><b>Subtotal</b></td><td class="r"><b>74 €</b></td><td class="r"><b>155 €</b></td></tr>
 </table>
 
 <table style="margin-top:18px">
@@ -538,21 +559,31 @@ H += `<section class="day" id="presupuesto">
 <tr><td><b>Subtotal</b></td><td class="r"><b>10 €</b></td><td class="r"><b>37 €</b></td></tr>
 </table>
 
-<table style="margin-top:20px"><tr class="tot"><td>TOTAL</td><td class="r">≈165 €</td><td class="r">≈305 €</td></tr></table>
+<table style="margin-top:20px"><tr class="tot"><td>TOTAL</td><td class="r">≈155 €</td><td class="r">≈305 €</td></tr></table>
 
-<div class="sub" style="margin-top:16px"><h4>Para llevar encima: 210-230 €</h4>
+<div class="sub" style="margin-top:16px"><h4>Para llevar encima: 200-220 €</h4>
 <p style="margin:0 0 8px;font-size:14px">Es el punto medio y da margen de sobra.</p>
 <p class="meta"><b>Ajustes:</b> quien no cene el sábado resta 25-32 € · quien se salte Salinas y las Catacumbas resta 13 € · quien no vuelva el domingo en el minibús resta los 17 € de la vuelta.</p>
 </div></section>`;
 
 /* ================= CORREO ================= */
 H += `<section class="day" id="correo">
-<div class="dayhead prac"><div class="n">@</div><div><h2>Las reservas del viernes</h2><p>Dos restaurantes en juego · 11 personas · viernes 11 a las 20:30</p></div></div>
+<div class="dayhead prac"><div class="n">@</div><div><h2>La cena del viernes</h2><p>I Pastari · 11 personas · viernes 11 a las 20:30</p></div></div>
 
-<p style="font-size:14px;margin:0 0 18px">Escribimos a los dos y nos quedamos con el que confirme antes y mejor. En ambos casos: mandamos el italiano en el cuerpo del mensaje, y si en 48 horas no contestan se remata por teléfono. Para once personas un viernes de diciembre no conviene fiarse solo del correo.</p>
+<div class="note" style="margin:0 0 18px"><b>Ya está confirmada.</b> Contestó Simone Domino, fundador de I Pastari: mesa para 11 el viernes 11 a las 20:30, sin señal, y solo nos piden que avisemos cuanto antes si cambia el número de comensales. Si alguien se cae o se suma, decídmelo y lo comunico.</div>
 
-<div class="sub"><h4>1 · Trattoria Del Massimo</h4>
-<p class="meta" style="margin-bottom:10px">Trattoria siciliana clásica con sala de banquetes, que es su gran baza para un grupo de once. A 10 min del hotel.</p>
+<div class="sub" style="border:2px solid var(--green)"><h4>Reservado · I Pastari</h4>
+<p class="meta" style="margin-bottom:10px">Menú cerrado a 14,90 € o a la carta, como quiera cada uno. Cubierto aparte, 2 € por persona.</p>
+<div class="row"><span>Dirección</span><span class="r" style="white-space:normal">Via Roma, 218</span></div>
+<div class="row"><span>Correo</span><span class="r" style="white-space:normal"><a href="mailto:info@ipastari.it">info@ipastari.it</a></span></div>
+<div class="row"><span>Teléfono</span><span class="r"><a href="tel:+390912730803">+39 091 273 0803</a></span></div>
+<div class="row"><span>Reserva</span><span class="r">Viernes 11, 20:30</span></div>
+<div class="row"><span>Señal</span><span class="r">No piden</span></div>
+<div class="mini"><a href="tel:+390912730803">Llamar</a><a href="mailto:info@ipastari.it">Escribir</a><a href="https://www.leggimenu.it/menu/ipastari?l=es" target="_blank" rel="noopener" class="solid">Ver el menú</a></div>
+</div>
+
+<div class="sub" style="margin-top:28px"><h4>Por si acaso · Trattoria Del Massimo</h4>
+<p class="meta" style="margin-bottom:10px">No hace falta escribirles, pero dejo los datos y el correo listo por si a última hora hubiera que mover la reserva a otro sitio.</p>
 <div class="row"><span>Dirección</span><span class="r" style="white-space:normal">Piazza Giuseppe Verdi, 25/26</span></div>
 <div class="row"><span>Correo</span><span class="r" style="white-space:normal"><a href="mailto:trattoriadelmassimo@gmail.com">trattoriadelmassimo@gmail.com</a></span></div>
 <div class="row"><span>Teléfono</span><span class="r"><a href="tel:+39091326155">+39 091 326155</a></span></div>
@@ -566,23 +597,6 @@ H += `<section class="day" id="correo">
 </div>
 <div class="mail" id="mail-dm"></div>
 <button class="copy" data-copy="dm">Copiar el correo</button>
-
-<div class="sub" style="margin-top:28px"><h4>2 · I Pastari</h4>
-<p class="meta" style="margin-bottom:10px">Pasta fresca y pizza, cocina continua hasta las 23:00 y menú en español. A 12 min del hotel. Aquí lo que hay que confirmar sí o sí es que quepan once.</p>
-<div class="row"><span>Dirección</span><span class="r" style="white-space:normal">Via Roma, 218</span></div>
-<div class="row"><span>Correo</span><span class="r" style="white-space:normal"><a href="mailto:info@ipastari.it">info@ipastari.it</a></span></div>
-<div class="row"><span>Teléfono</span><span class="r"><a href="tel:+390912730803">+39 091 273 0803</a></span></div>
-<div class="row"><span>Horario</span><span class="r">12:00-23:00</span></div>
-<div class="row"><span>Precio</span><span class="r">20-28 €/persona</span></div>
-<div class="mini"><a href="tel:+390912730803">Llamar</a><a href="mailto:info@ipastari.it">Escribir</a><a href="https://www.ipastari.it/" target="_blank" rel="noopener" class="solid">Enlace</a></div>
-<p class="meta" style="margin-top:10px">Cobran 2 € de cubierto por persona, así que al total hay que sumarle 22 €.</p>
-</div>
-
-<div class="tabs" data-for="ip">
-  <button class="on" data-l="it">Italiano</button><button data-l="en">English</button><button data-l="es">Español</button>
-</div>
-<div class="mail" id="mail-ip"></div>
-<button class="copy" data-copy="ip">Copiar el correo</button>
 
 <p class="meta" style="margin-top:14px">Sustituid <b>[NOMBRE Y APELLIDO]</b> y <b>[TELÉFONO MÓVIL]</b> antes de enviarlo.</p>
 </section>`;
