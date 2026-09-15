@@ -60,7 +60,16 @@ nav a.jordi{color:#fff;background:var(--red)}
 
 /* DAY */
 .day{padding:26px 18px 8px}
-.dayhead{display:flex;align-items:flex-end;gap:14px;border-bottom:3px solid;padding-bottom:10px;margin-bottom:20px}
+.dayhead{display:flex;align-items:flex-end;gap:14px;border-bottom:3px solid;padding-bottom:10px;margin-bottom:20px;
+  position:sticky;top:var(--navh,46px);z-index:20;background:var(--plaster);padding-top:12px}
+.day{scroll-margin-top:var(--navh,46px)}
+.acc{border-top:1px solid var(--line);margin-bottom:4px}
+.acc summary{list-style:none;cursor:pointer;position:relative;padding-right:34px;-webkit-tap-highlight-color:transparent}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary::after{content:"+";position:absolute;right:4px;top:50%;transform:translateY(-55%);
+  font-family:Georgia,serif;font-size:26px;line-height:1;color:var(--gold)}
+.acc[open] summary::after{content:"\2013"}
+.acc[open]{padding-bottom:6px}
 .dayhead .n{font-family:Georgia,serif;font-size:46px;line-height:.8;font-weight:700}
 .dayhead h2{font-size:24px}
 .dayhead p{margin:4px 0 0;font-size:13px;color:var(--ink2)}
@@ -484,8 +493,7 @@ H += `<section class="day" id="copas">
 
 <div class="warn"><b>Un apunte para los chavales.</b> En Italia está prohibido servir alcohol a menores de 18 y muchas discotecas piden documentación en la puerta. Los pubs con cocina y la calle de la Vucciria no suelen poner pegas; Candelai y Berlin Café sí pueden pedirla. Que lleven el DNI encima los que lo tengan.</div>
 
-<div class="zona">A cinco minutos del hotel<span>Para empezar la noche o para rematarla sin pensar en la vuelta</span></div>
-
+<details class="acc"><summary class="zona">A cinco minutos del hotel<span>Para empezar la noche o para rematarla sin pensar en la vuelta</span></summary>
 <div class="sub">
 <div class="altcard"><div class="top"><span><b>Tina Pica Bistrot</b> ★ 4,5 (171)<br><span class="meta">Via Salvatore Spinuzza, 18/B · <b>450 m, 6 min</b> · viernes y sábado hasta las <b>3:00</b></span></span><span class="r">Copa<br>6-9 €</span></div>
 <p style="font-size:13.5px;margin:8px 0 0">El que mejor funciona para un grupo mixto de padres e hijos: no es discoteca ni bar de señores. Local de barrio, ponen fútbol, y varias reseñas coinciden en que el personal te trata como si fueras de casa. Patatas y cacahuetes gratis con la copa.</p>
@@ -503,9 +511,9 @@ H += `<section class="day" id="copas">
 <p style="font-size:13.5px;margin:8px 0 0">Local grande con carta enorme de destilados y tablas de embutidos. Aguanta bien a un grupo de pie. Alguna reseña se queja de precios y de camareros bordes.</p>
 <div class="mini"><a href="tel:+39091335730">Llamar</a><a href="${map('Bottiglieria del Massimo')}" target="_blank" rel="noopener" class="solid">Enlace</a></div></div>
 </div>
+</details>
 
-<div class="zona">Coctelería seria<span>Si lo que apetece es beber bien, no beber mucho</span></div>
-
+<details class="acc"><summary class="zona">Coctelería seria<span>Si lo que apetece es beber bien, no beber mucho</span></summary>
 <div class="sub">
 <div class="altcard"><div class="top"><span><b>Palco – Unexpected Cocktails</b> ★ 4,9 (292)<br><span class="meta">Piazzale Ungheria, 9 · <b>500 m, 7 min</b> · hasta la <b>1:00</b></span></span><span class="r">Cóctel<br>10-14 €</span></div>
 <p style="font-size:13.5px;margin:8px 0 0">Lo mejor de Palermo en su categoría. Local pequeño: con mucha gente a la vez, mejor ir de tres en tres.</p>
@@ -515,9 +523,9 @@ H += `<section class="day" id="copas">
 <p style="font-size:13.5px;margin:8px 0 0">Coctelería con <b>jazz en directo los sábados</b> y tablas de embutidos. Ambiente más tranquilo y adulto. Conviene reservar por WhatsApp si vais varios.</p>
 <div class="mini"><a href="tel:+390916745668">Llamar</a><a href="${map('Mak Mixology Via Maqueda 301')}" target="_blank" rel="noopener" class="solid">Enlace</a></div></div>
 </div>
+</details>
 
-<div class="zona">Cerveza artesana<span>Para los que no beben ni spritz ni cubatas</span></div>
-
+<details class="acc"><summary class="zona">Cerveza artesana<span>Para los que no beben ni spritz ni cubatas</span></summary>
 <div class="sub">
 <div class="altcard"><div class="top"><span><b>High Hops</b> ★ 4,9 (279)<br><span class="meta">Via Giuseppe Patania, 34 · <b>600 m, 8 min</b> · viernes hasta la <b>1:00</b>, sábado hasta las <b>2:00</b></span></span><span class="r">Pinta<br>5-7 €</span></div>
 <p style="font-size:13.5px;margin:8px 0 0">La mejor selección de artesana de la zona, y además tienen cocina: hamburguesas y tabla de embutidos sicilianos. Pequeño, así que con once vais justos.</p>
@@ -531,9 +539,9 @@ H += `<section class="day" id="copas">
 <p style="font-size:13.5px;margin:8px 0 0">Cerveza de barril inglesa, sidras y clientela local. Escondido en una plazoleta empedrada a un paso de Via Maqueda.</p>
 <div class="mini"><a href="${map('Beering birre Piazza Sant Onofrio Palermo')}" target="_blank" rel="noopener" class="solid">Enlace</a></div></div>
 </div>
+</details>
 
-<div class="zona">La noche joven · Via dei Candelai<span>Una calle entera de pubs a 1 km del hotel, 13 minutos andando y todo llano</span></div>
-
+<details class="acc"><summary class="zona">La noche joven · Via dei Candelai<span>Una calle entera de pubs a 1 km del hotel, 13 minutos andando y todo llano</span></summary>
 <div class="sub">
 <div class="altcard"><div class="top"><span><b>Candelai</b> ★ 4,1 (444)<br><span class="meta">Via dei Candelai, 65 · <b>1 km, 13 min</b> · viernes y sábado de 21:00 a <b>3:00</b></span></span><span class="r">Entrada<br>variable</span></div>
 <p style="font-size:13.5px;margin:8px 0 0">La discoteca de verdad de la zona: conciertos, fiestas con DJ y patio. Guardarropa desde 3 €. Aviso: se puede fumar dentro y se sale oliendo a tabaco.</p>
@@ -543,11 +551,11 @@ H += `<section class="day" id="copas">
 <p style="font-size:13.5px;margin:8px 0 0">Pub pequeño en la misma calle, cócteles baratos y bien hechos. El camarero es la mitad del encanto según todas las reseñas.</p>
 <div class="mini"><a href="${map('My Dream An Pub Via dei Candelai')}" target="_blank" rel="noopener" class="solid">Enlace</a></div></div>
 </div>
+</details>
 
 <div class="warn"><b>Pub 99, en esa misma calle, mejor no.</b> Tiene un 2,7 y hay una reseña que acusa al local de servir alcohol a menores sin pedir documentación y de usar alcohol de mala calidad. Con seis chavales en el grupo, es justo el sitio que conviene tener fichado para evitarlo.</div>
 
-<div class="zona">La Vucciria<span>El plan más barato y más callejero, a 900 m y 12 minutos</span></div>
-
+<details class="acc"><summary class="zona">La Vucciria<span>El plan más barato y más callejero, a 900 m y 12 minutos</span></summary>
 <div class="sub">
 <div class="altcard"><div class="top"><span><b>Taverna Azzurra</b> ★ 4,5 (1.709)<br><span class="meta">Via Maccherronai, 15 · <b>900 m, 12 min</b> · hasta las <b>23:00</b>, domingo cerrado</span></span><span class="r">Caña<br>3-5 €</span></div>
 <p style="font-size:13.5px;margin:8px 0 0">La institución del barrio. Taberna vieja, barata, con todo el mundo bebiendo en la calle y la música alta. Lo único malo es que cierra pronto para lo que es.</p>
@@ -557,6 +565,7 @@ H += `<section class="day" id="copas">
 <p style="font-size:13.5px;margin:8px 0 0">Lo más barato que vais a encontrar: cerveza a 1,50 € y bocadillos a 2,50 €. Lleno de gente local, y para pedir hay que espabilar y gritar como todo el mundo.</p>
 <div class="mini"><a href="tel:+393484058557">Llamar</a><a href="${map('Drunks Piazza Sant Anna Palermo')}" target="_blank" rel="noopener" class="solid">Enlace</a></div></div>
 </div>
+</details>
 
 <div class="note"><b>Para volver de madrugada.</b> Todo esto está a menos de veinte minutos andando del hotel y por calles abiertas y transitadas. Si aun así apetece taxi, Uber funciona en Palermo como Uber Taxi y también está Radiotaxi Trinacria en el <b>+39 091 225455</b>, que están en la sección Práctico.</div>
 </section>`;
@@ -693,6 +702,17 @@ H += `<section class="day" id="correo">
 </section>`;
 
 document.getElementById('app').innerHTML = H;
+
+/* la barra de menú mide distinto según el móvil: fijamos su altura real
+   para que las cabeceras de sección se peguen justo debajo */
+(function(){
+  function medir(){
+    var n = document.querySelector('nav');
+    if (n) document.documentElement.style.setProperty('--navh', n.offsetHeight + 'px');
+  }
+  medir();
+  window.addEventListener('resize', medir);
+})();
 
 /* menú superior: marca la sección en la que estás */
 (function(){
