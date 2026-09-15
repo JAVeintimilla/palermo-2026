@@ -83,7 +83,7 @@ footer a{color:var(--gold)}
   <div class="kicker">Palermo · 10 al 12 de diciembre</div>
   <h1>Guía para Jordi</h1>
   <p>La misma guía que los demás, pero explicada despacio, sin adornos y contándotelo todo en metros, minutos y euros. Aquí no hay que pinchar en nada: te lo lees y ya está.</p>
-  <p style="color:#FBE7E2;font-size:13.5px;margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.3)"><b style="color:#fff">Esto se va actualizando.</b> Según vayamos reservando restaurantes y entradas, se cambia aquí. Ábrela otra vez de vez en cuando, no te quedes con la versión de hoy.</p>
+  <p style="color:#FBE7E2;font-size:13.5px;margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.3)"><b style="color:#fff">Esto se va actualizando.</b> Según vayamos reservando restaurantes y entradas, se cambia aquí. Ábrela otra vez de vez en cuando, no te quedes con la versión de hoy.<br><span style="font-size:12px">Última actualización: <b id="build" style="color:#fff">—</b></span></p>
   <a class="back" href="index.html">← Volver a la guía normal</a>
 </header>
 
@@ -472,5 +472,27 @@ footer a{color:var(--gold)}
 </footer>
 
 </div>
+
+<script>
+/* Comprueba si hay una versión más nueva publicada y recarga una sola vez.
+   Evita que el navegador de WhatsApp sirva una copia vieja durante horas. */
+(function(){
+  var MIA = "20260915-0603";
+  var el = document.getElementById('build');
+  if (el) el.textContent = MIA.slice(6,8) + '/' + MIA.slice(4,6) + ' a las ' + MIA.slice(9,11) + ':' + MIA.slice(11,13);
+  try {
+    if (sessionStorage.getItem('recargado') === MIA) return;
+  } catch(e) { return; }
+  fetch('version.json?t=' + Date.now(), { cache: 'no-store' })
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if (d && d.version && d.version !== MIA) {
+        sessionStorage.setItem('recargado', d.version);
+        location.replace(location.pathname + '?v=' + d.version);
+      }
+    })
+    .catch(function(){ /* sin conexión: se queda con lo que hay */ });
+})();
+</script>
 </body>
 </html>

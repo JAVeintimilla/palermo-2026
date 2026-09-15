@@ -145,7 +145,34 @@ footer b{color:var(--plaster)}
 footer a{color:var(--gold)}
 .chk{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--line);font-size:13.5px}
 .chk span:first-child{font-size:16px;line-height:1.2}
+/* que ninguna palabra larga (correo, URL) rompa la caja en pantallas estrechas */
+p,td,th,.meta,.mail,.altcard,.row span{overflow-wrap:anywhere}
+
 @media(min-width:560px){ .opts{flex-direction:row} .opts>div{flex:1} .stop img{height:230px} }
+
+/* ESCRITORIO: se ensancha el contenedor y las fichas ponen la foto al lado del texto,
+   pero el texto seguido nunca pasa de ~70 caracteres por línea */
+@media(min-width:1000px){
+  .wrap{max-width:920px}
+  .day{padding:32px 26px 10px}
+  .hero{padding:48px 26px 32px}
+  .hero h1{font-size:64px}
+
+  .stop{display:flex;align-items:stretch}
+  .stop .media{flex:0 0 40%;max-width:40%;display:flex;flex-direction:column}
+  .stop .media img{height:100%;min-height:200px;flex:1}
+  .stop .media .gal{flex:0 0 auto}
+  .stop .media .gal img{height:78px;min-height:0}
+  .stop .in{flex:1;min-width:0;padding:16px 18px 18px}
+
+  /* dentro de los acordeones, los locales van de dos en dos */
+  .acc .sub{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;align-items:start}
+  .acc .sub .altcard{margin-bottom:0}
+
+  /* el presupuesto aprovecha el ancho */
+  #presupuesto table{font-size:14px}
+  .facts .fact{flex:1 1 200px}
+}
 </style>
 </head>
 <body>
@@ -228,8 +255,7 @@ function stop(o){
   const acts = (o.acts||[]).map(a =>
     `<a href="${a.href}" ${a.href.startsWith('http')?'target="_blank" rel="noopener"':''} class="${a.solid?'solid':''}">${a.label}</a>`).join('');
   return `<article class="stop">
-    ${o.img?`<img loading="lazy" src="${IMG[o.img].startsWith('http')?IMG[o.img]:P+IMG[o.img]}" alt="${o.h}" onerror="this.style.display='none'">`:''}
-    ${o.gal?`<div class="gal">${o.gal.map(g=>`<img loading="lazy" src="${P+IMG[g]}" alt="${o.h}" onerror="this.style.display='none'">`).join('')}</div>`:''}
+    ${(o.img||o.gal)?`<div class="media">${o.img?`<img loading="lazy" src="${IMG[o.img].startsWith('http')?IMG[o.img]:P+IMG[o.img]}" alt="${o.h}" onerror="this.style.display='none'">`:''}${o.gal?`<div class="gal">${o.gal.map(g=>`<img loading="lazy" src="${P+IMG[g]}" alt="${o.h}" onerror="this.style.display='none'">`).join('')}</div>`:''}</div>`:''}
     <div class="in">
       ${o.time?`<div class="time t-${o.c}">${o.time}</div>`:''}${o.chip?`<span class="chip ${o.chipClass||''}">${o.chip}</span>`:''}
       <h3>${o.h}</h3>
@@ -935,7 +961,7 @@ document.querySelectorAll('.copy').forEach(btn=>{
 /* Comprueba si hay una versión más nueva publicada y recarga una sola vez.
    Evita que el navegador de WhatsApp sirva una copia vieja durante horas. */
 (function(){
-  var MIA = "20260914-1708";
+  var MIA = "20260915-0603";
   var el = document.getElementById('build');
   if (el) el.textContent = MIA.slice(6,8) + '/' + MIA.slice(4,6) + ' a las ' + MIA.slice(9,11) + ':' + MIA.slice(11,13);
   try {
