@@ -474,22 +474,30 @@ footer a{color:var(--gold)}
 </div>
 
 <script>
-/* Comprueba si hay una versión más nueva publicada y recarga una sola vez.
-   Evita que el navegador de WhatsApp sirva una copia vieja durante horas. */
+/* Fecha real de publicación y comprobación de versión.
+   No hay sellos que mantener a mano: se leen del propio servidor. */
 (function(){
-  var MIA = "20260915-0603";
+  var propia = new Date(document.lastModified);
   var el = document.getElementById('build');
-  if (el) el.textContent = MIA.slice(6,8) + '/' + MIA.slice(4,6) + ' a las ' + MIA.slice(9,11) + ':' + MIA.slice(11,13);
-  try {
-    if (sessionStorage.getItem('recargado') === MIA) return;
-  } catch(e) { return; }
-  fetch('version.json?t=' + Date.now(), { cache: 'no-store' })
-    .then(function(r){ return r.json(); })
-    .then(function(d){
-      if (d && d.version && d.version !== MIA) {
-        sessionStorage.setItem('recargado', d.version);
-        location.replace(location.pathname + '?v=' + d.version);
-      }
+  function dosDigitos(n){ return ('0' + n).slice(-2); }
+  if (el && !isNaN(propia.getTime())) {
+    el.textContent = dosDigitos(propia.getDate()) + '/' + dosDigitos(propia.getMonth() + 1) +
+                     ' a las ' + dosDigitos(propia.getHours()) + ':' + dosDigitos(propia.getMinutes());
+  }
+  var yaRecargado;
+  try { yaRecargado = sessionStorage.getItem('recarga'); } catch (e) { return; }
+  fetch(location.pathname, { method: 'HEAD', cache: 'no-store' })
+    .then(function(r){
+      var cabecera = r.headers.get('last-modified');
+      if (!cabecera) return;
+      var servidor = new Date(cabecera);
+      if (isNaN(servidor.getTime()) || isNaN(propia.getTime())) return;
+      /* margen de un minuto para no recargar por diferencias de reloj */
+      if (servidor.getTime() - propia.getTime() < 60000) return;
+      var marca = String(servidor.getTime());
+      if (yaRecargado === marca) return;
+      try { sessionStorage.setItem('recarga', marca); } catch (e) {}
+      location.replace(location.pathname + '?v=' + marca);
     })
     .catch(function(){ /* sin conexión: se queda con lo que hay */ });
 })();
