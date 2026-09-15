@@ -60,15 +60,20 @@ nav a.jordi{color:#fff;background:var(--red)}
 
 /* DAY */
 .day{padding:26px 18px 8px}
-.dayhead{display:flex;align-items:flex-end;gap:14px;border-bottom:3px solid;padding-bottom:10px;margin-bottom:20px;
-  position:sticky;top:var(--navh,46px);z-index:20;background:var(--plaster);padding-top:12px}
+.dayhead{display:flex;align-items:flex-end;gap:14px;border-bottom:3px solid;padding-bottom:10px;margin-bottom:22px;
+  position:sticky;top:var(--navh,46px);z-index:20;background:var(--plaster);padding-top:12px;
+  box-shadow:0 12px 0 0 var(--plaster)}
 .day{scroll-margin-top:var(--navh,46px)}
 .acc{border-top:1px solid var(--line);margin-bottom:4px}
 .acc summary{list-style:none;cursor:pointer;position:relative;padding-right:34px;-webkit-tap-highlight-color:transparent}
 .acc summary::-webkit-details-marker{display:none}
-.acc summary::after{content:"+";position:absolute;right:4px;top:50%;transform:translateY(-55%);
-  font-family:Georgia,serif;font-size:26px;line-height:1;color:var(--gold)}
-.acc[open] summary::after{content:"\2013"}
+.acc summary::after{content:"+";position:absolute;right:6px;top:50%;
+  transform:translateY(-55%) rotate(0deg);transform-origin:50% 45%;
+  font-family:Georgia,serif;font-size:26px;line-height:1;color:var(--gold);
+  transition:transform .28s cubic-bezier(.4,0,.2,1)}
+.acc[open] summary::after{transform:translateY(-55%) rotate(135deg)}
+.acc summary{transition:color .2s}
+.acc[open] summary{color:var(--gold)}
 .acc[open]{padding-bottom:6px}
 .dayhead .n{font-family:Georgia,serif;font-size:46px;line-height:.8;font-weight:700}
 .dayhead h2{font-size:24px}
@@ -702,6 +707,38 @@ H += `<section class="day" id="correo">
 </section>`;
 
 document.getElementById('app').innerHTML = H;
+
+/* acordeones con apertura y cierre animados: <details> por sí solo no anima */
+(function(){
+  var sinMovimiento = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('details.acc').forEach(function(d){
+    var cabecera = d.querySelector('summary');
+    var caja = d.querySelector('.sub');
+    if (!cabecera || !caja) return;
+    var anim = null;
+    cabecera.addEventListener('click', function(e){
+      if (sinMovimiento || typeof caja.animate !== 'function') return;
+      e.preventDefault();
+      if (anim) { anim.cancel(); anim = null; }
+      var abriendo = !d.open;
+      caja.style.overflow = 'hidden';
+      if (abriendo) d.open = true;
+      var alto = caja.scrollHeight;
+      var pasos = abriendo
+        ? [{height:'0px', opacity:0}, {height:alto+'px', opacity:1}]
+        : [{height:alto+'px', opacity:1}, {height:'0px', opacity:0}];
+      anim = caja.animate(pasos, {
+        duration: abriendo ? 280 : 220,
+        easing: 'cubic-bezier(.4,0,.2,1)'
+      });
+      anim.onfinish = function(){
+        if (!abriendo) d.open = false;
+        caja.style.overflow = '';
+        anim = null;
+      };
+    });
+  });
+})();
 
 /* la barra de menú mide distinto según el móvil: fijamos su altura real
    para que las cabeceras de sección se peguen justo debajo */
